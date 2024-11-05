@@ -7,36 +7,43 @@ $username = "root";
 $password = "";
 $dbname = "mi_tienda";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+try {
+    $nickname=$_POST['user'];
+    $contra=$_POST['pass'];
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmtUser = $conn->prepare("SELECT * FROM cliente where nickname = '$nickname'");
+    $stmtUser->execute();
 
-$sqlUser = "SELECT * FROM cliente where nickname = '$_POST[user]'";
-$resultUser = $conn->query($sqlUser);
+    // set the resulting array to associative
+    $result = $stmtUser->setFetchMode(PDO::FETCH_ASSOC);
+    if($stmtUser->rowCount()>0) {
+        echo 'a';
+        $stmt = $conn->prepare("SELECT * FROM cliente where nickname = '$nickname' and password = '$contra'");
+        $stmt->execute();
 
-if ($resultUser->num_rows > 0) {
-    $sql = "SELECT * FROM cliente where nickname = '$_POST[user]' and password = '$_POST[pass]'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        // Crear una nueva instancia de la clase Usuario
-        $nuevoCliente = new Cliente($_POST['user'], $_POST['pass']);
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        if($stmt->rowCount()>0) {
+            // Crear una nueva instancia de la clase Usuario
+            $nuevoCliente = new Cliente($_POST['user'], $_POST['pass']);
 
-        // Guardar el objeto Usuario en la sesión
-        $_SESSION['cliente'] = $nuevoCliente;
+            // Guardar el objeto Usuario en la sesión
+            $_SESSION['cliente'] = $nuevoCliente;
 
-        header('location:../tienda.php');
-    } else {
-        $error1= "Inicio de sesion incorrecto.";
-        header("location:../login.php?error1=' . $error1");
+            header('location:../tienda.php');
+        }else{
+            $error1= "Inicio de sesion incorrecto.";
+            header("location:../login.php?error1=$error1");
+            exit();
+        }
+    }else{
+        $error2= "Usuario no existente.";
+        header("location:../login.php?error2=$error2");
         exit();
     }
-} else {
-    $error2= "Usuario no existente.";
-    header("location:../login.php?error2=' . $error2");
-    exit();
+} catch(PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
-$conn->close();
+$conn = null;
 ?>
