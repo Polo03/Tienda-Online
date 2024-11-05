@@ -18,7 +18,6 @@ try {
     // set the resulting array to associative
     $result = $stmtUser->setFetchMode(PDO::FETCH_ASSOC);
     if($stmtUser->rowCount()>0) {
-        echo 'a';
         $stmt = $conn->prepare("SELECT * FROM cliente where nickname = '$nickname' and password = '$contra'");
         $stmt->execute();
 
