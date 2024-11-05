@@ -1,7 +1,7 @@
 <?php
 // Archivo Usuario.php
 
-class Usuario {
+class Cliente {
     private $usuario;
     private $contraseña;
 
