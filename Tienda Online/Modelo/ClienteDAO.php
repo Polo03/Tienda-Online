@@ -19,6 +19,31 @@ class ClienteDAO {
             return null; // Si no se encuentra, devolvemos null
         }
     }
+    public function getClienteByNickname($nickname) {
+        $stmt = $this->conn->prepare("SELECT * FROM cliente WHERE nickname = :nickname");
+        $stmt->bindParam(':nickname', $nickname);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($fila) {
+            return new DTOCliente($fila['id'], $fila['nombre'], $fila['apellido'], $fila['nickname'],$fila['password'], $fila['telefono'], $fila['domicilio']);
+        } else {
+            return null; // Si no se encuentra, devolvemos null
+        }
+    }
+    public function getClienteByNicknameAndPassword($nickname, $password) {
+        $stmt = $this->conn->prepare("SELECT * FROM cliente WHERE nickname = :nickname and password = :password");
+        $stmt->bindParam(':nickname', $nickname);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($fila) {
+            return new DTOCliente($fila['id'], $fila['nombre'], $fila['apellido'], $fila['nickname'],$fila['password'], $fila['telefono'], $fila['domicilio']);
+        } else {
+            return null; // Si no se encuentra, devolvemos null
+        }
+    }
     // Metodo que retorna una lista de empleados como objetos DTOEmpleado
     public function getAllClientes() {
         $stmt = $this->conn->prepare("SELECT * FROM cliente");

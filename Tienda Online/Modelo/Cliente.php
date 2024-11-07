@@ -1,5 +1,5 @@
 <?php
-// Archivo Usuario.php
+// Archivo Cliente.php
 
 class Cliente {
     private $usuario;
