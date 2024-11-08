@@ -11,7 +11,7 @@
 <body>
 <div class="login-container">
     <h2>Inicio de Sesión</h2>
-    <?php
+    <?php ;
     // Mostrar avisos si existen en la URL
     if (isset($_GET['error1']))
         echo "<p style='color: red;'>$_GET[error1]</p>";

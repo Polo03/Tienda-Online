@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+}
+.usuario {
+    position: relative; /* Necesario para el menú */
+    margin-left: auto; /* Alinea a la derecha */
+}
+.menu {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+.usuario:hover .menu {
+    display: block; /* Muestra el menú al pasar el mouse */
+}
+.menu a {
+    display: block;
+    padding: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+.menu a:hover {
+    background-color: #f0f0f0;
+}
+.container {
+    margin: 25%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    grid-gap: 20px;
+    width: 60%;
+    max-width: 800px;  /* Limitar el tamaño máximo de los botones */
+    text-align: center;
+    justify-content: center;
+}
+
+/* Estilo para los botones */
+.btn {
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100%;  /* Hacer que los botones ocupen el 100% del ancho de su celda */
+}
+
+/* Efecto al pasar el ratón */
+.btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Efecto al hacer clic */
+.btn:active {
+    transform: scale(0.9);
+}
