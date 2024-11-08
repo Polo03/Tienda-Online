@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../Modelo/Cliente.php';
-require_once '../Controlador/ControlCliente.php';
 require_once '../Modelo/ClienteDAO.php';
 
 $clienteDAO=new ClienteDAO();
