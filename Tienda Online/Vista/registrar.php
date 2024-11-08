@@ -1,10 +1,13 @@
 <?php
+require_once '../Controlador/ControladorCliente.php'; // Incluir el archivo del controlador
+
 $servername = "localhost";
 $username = "Carlos";
 $password = "123";
 $dbname = "mi_tienda";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener los datos del formulario
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $nickname = $_POST['nickname'];
@@ -12,28 +15,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = $_POST['telefono'];
     $domicilio = $_POST['domicilio'];
 
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Crear una instancia del controlador
+    $controlador = new ControladorCliente($servername, $username, $password, $dbname);
 
-        $sql = "INSERT INTO cliente (nombre, apellido, nickname, password, telefono, domicilio) 
-                VALUES (:nombre, :apellido, :nickname, :password, :telefono, :domicilio)";
+    // Llamar al método para registrar al cliente
+    $errores = $controlador->registrarCliente($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':apellido', $apellido);
-        $stmt->bindParam(':nickname', $nickname);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':telefono', $telefono);
-        $stmt->bindParam(':domicilio', $domicilio);
-
-        $stmt->execute();
+    if (empty($errores)) {
+        // Si no hay errores, mostrar mensaje de éxito
         echo "Nuevo cliente creado exitosamente";
-    } catch(PDOException $e) {
-        echo "Error: " . $e->getMessage();
+    } else {
+        // Si hay errores, mostrarlos
+        foreach ($errores as $error) {
+            echo "<p>$error</p>";
+        }
     }
-
-    $conn = null;
 }
 ?>
 
