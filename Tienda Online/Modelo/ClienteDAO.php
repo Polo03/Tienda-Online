@@ -64,12 +64,17 @@ class ClienteDAO {
         $stmt = $this->conn->prepare("INSERT INTO cliente (nombre, apellido, nickname, password, telefono, domicilio) VALUES (:nombre, :apellido, :nickname, :password, :telefono, :domicilio)");
         //$stmt->bindParam(':id', $cliente->getId());
         $nombre = $cliente->getNombre();
+        $apellido = $cliente->getApellido();
+        $nickname = $cliente->getNickname();
+        $password = $cliente->getPassword();
+        $telefono = $cliente->getTelefono();
+        $domicilio = $cliente->getDomicilio();
         $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':apellido', $cliente->getApellido());
-        $stmt->bindParam(':nickname', $cliente->getNickname());
-        $stmt->bindParam(':password', $cliente->getPassword());
-        $stmt->bindParam(':telefono', $cliente->getTelefono());
-        $stmt->bindParam(':domicilio', $cliente->getDomicilio());
+        $stmt->bindParam(':apellido', $apellido);
+        $stmt->bindParam(':nickname', $nickname);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':telefono', $telefono);
+        $stmt->bindParam(':domicilio', $domicilio);
         return $stmt->execute();
     }
     public function updateCliente($cliente) {

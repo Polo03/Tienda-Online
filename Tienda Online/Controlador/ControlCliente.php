@@ -18,7 +18,13 @@ class ControlCliente{
         }
         else {
             $this->clienteDAO->addCliente($cliente);
-            echo "<p>Nuevo cliente creado exitosamente</p>";
+            // Crear una nueva instancia de la clase Usuario
+            $nuevoCliente = new Cliente($cliente->getNickname(), $cliente->getPassword());
+
+            // Guardar el objeto Usuario en la sesión
+            $_SESSION['cliente'] = $nuevoCliente;
+
+            header('location: ../Vista/tienda.php');
             return true;
         }
     }

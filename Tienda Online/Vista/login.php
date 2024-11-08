@@ -16,7 +16,7 @@
     if (isset($_GET['error1']))
         echo "<p style='color: red;'>$_GET[error1]</p>";
     if (isset($_GET['error2']))
-        echo "<p style='color: red;'>$_GET[error2] <a href='registro.php'>¿Quiere registrarse?</a></p>";
+        echo "<p style='color: red;'>$_GET[error2] <a href='registrar.php'>¿Quiere registrarse?</a></p>";
     ?>
     <form action="../Validaciones/validarLogin.php" method="post">
         <input type="text" name="user" placeholder="Usuario" required>
