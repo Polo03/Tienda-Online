@@ -1,5 +1,5 @@
 <?php
-require_once '../Controlador/ControlCliente.php'; // Incluir el archivo del controlador
+require_once '../Controlador/ControladorCliente.php'; // Incluir el archivo del controlador
 require_once '../Validaciones/ValidarRegistrar.php'; // Incluir la clase de validación
 require_once '../Modelo/Cliente.php';
 
@@ -17,8 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = trim($_POST['telefono']);
     $domicilio = trim($_POST['domicilio']);
 
-    // Llamar a la clase ValidarRegistrarse para validar los datos
-    $errores = ValidarRegistrarse::validarDatos($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
+    // Crear una instancia del controlador
+    $controlador = new ControladorCliente();
+
+    // Llamar al método para registrar al cliente
+    $errores = $controlador->registrarCliente($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
 
     if (empty($errores)) {
         // Si no hay errores, crear una instancia del controlador
