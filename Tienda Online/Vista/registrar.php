@@ -25,9 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Llamar al método para registrar al cliente
         $cliente = new DTOCliente($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
         $controlador->crearCliente($cliente);
-
-        // Mostrar mensaje de éxito
-        echo "<p>Nuevo cliente creado exitosamente</p>";
     } else {
         // Si hay errores, mostrarlos
         foreach ($errores as $error) {

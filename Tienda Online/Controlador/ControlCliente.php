@@ -13,10 +13,12 @@ class ControlCliente{
 
     public function crearCliente($cliente) {
         if($this->clienteDAO->getClienteByNickname($cliente->getNickname()) !== null){
+            echo "<p>Usuario ya registrado</p>";
             return false;
         }
         else {
             $this->clienteDAO->addCliente($cliente);
+            echo "<p>Nuevo cliente creado exitosamente</p>";
             return true;
         }
     }

@@ -3,16 +3,9 @@ require_once '../Modelo/ClienteDAO.php';
 require_once '../Modelo/Cliente.php';
 require_once '../Controlador/ControladorCliente.php';
 class ControladorCliente {
-    private $conn;
     private $clienteDAO;
 
     public function __construct() {
-        /*try {
-            $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die("Error de conexión: " . $e->getMessage());
-        }*/
         $this->clienteDAO=new ClienteDAO();
     }
 
