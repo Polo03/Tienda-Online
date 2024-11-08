@@ -12,11 +12,12 @@ class ControlCliente{
     }*/
 
     public function crearCliente($cliente) {
-        if ($cliente->getEdad() > 18) {
+        if($this->clienteDAO->getClienteByNickname($cliente->getNickname()) !== null){
+            return false;
+        }
+        else {
             $this->clienteDAO->addCliente($cliente);
             return true;
-        } else {
-            return false;
         }
     }
 

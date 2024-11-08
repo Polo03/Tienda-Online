@@ -1,5 +1,7 @@
 <?php
-require_once '../Controlador/ControladorCliente.php'; // Incluir el archivo del controlador
+require_once '../Controlador/ControlCliente.php'; // Incluir el archivo del controlador
+require_once '../Validaciones/ValidarRegistrar.php'; // Incluir la clase de validación
+require_once '../Modelo/Cliente.php';
 
 $servername = "localhost";
 $username = "Carlos";
@@ -8,26 +10,30 @@ $dbname = "mi_tienda";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $nickname = $_POST['nickname'];
-    $password = $_POST['password'];
-    $telefono = $_POST['telefono'];
-    $domicilio = $_POST['domicilio'];
+    $nombre = trim($_POST['nombre']);
+    $apellido = trim($_POST['apellido']);
+    $nickname = trim($_POST['nickname']);
+    $password = trim($_POST['password']);
+    $telefono = trim($_POST['telefono']);
+    $domicilio = trim($_POST['domicilio']);
 
-    // Crear una instancia del controlador
-    $controlador = new ControladorCliente($servername, $username, $password, $dbname);
-
-    // Llamar al método para registrar al cliente
-    $errores = $controlador->registrarCliente($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
+    // Llamar a la clase ValidarRegistrarse para validar los datos
+    $errores = ValidarRegistrarse::validarDatos($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
 
     if (empty($errores)) {
-        // Si no hay errores, mostrar mensaje de éxito
-        echo "Nuevo cliente creado exitosamente";
+        // Si no hay errores, crear una instancia del controlador
+        $controlador = new ControlCliente();
+
+        // Llamar al método para registrar al cliente
+        $cliente = new DTOCliente($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
+        $controlador->crearCliente($cliente);
+
+        // Mostrar mensaje de éxito
+        echo "<p>Nuevo cliente creado exitosamente</p>";
     } else {
         // Si hay errores, mostrarlos
         foreach ($errores as $error) {
-            echo "<p>$error</p>";
+            echo "<p style='color: red;'>$error</p>";
         }
     }
 }

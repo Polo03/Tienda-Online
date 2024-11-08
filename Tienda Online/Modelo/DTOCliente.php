@@ -8,8 +8,8 @@ class DTOCliente {
     private $telefono;
     private $domicilio;
 
-    public function __construct($id, $nombre, $apellido, $nickname, $password, $telefono, $domicilio) {
-        $this->id = $id;
+    public function __construct($nombre, $apellido, $nickname, $password, $telefono, $domicilio) {
+        // $this->id = $id;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->nickname = $nickname;
