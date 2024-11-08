@@ -81,7 +81,7 @@ class ControladorCliente {
     // Insertar el cliente en la base de datos si los datos son válidos
     public function registrarCliente($nombre, $apellido, $nickname, $password, $telefono, $domicilio) {
         // Validar datos
-        $errores = $this->validarDatos($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
+        $errores = $this->validarDatosRegistro($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
 
         if (!empty($errores)) {
             return $errores; // Retornar errores para mostrarlos al usuario
