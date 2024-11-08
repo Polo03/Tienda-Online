@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $domicilio = $_POST['domicilio'];
 
     // Crear una instancia del controlador
-    $controlador = new ControladorCliente($servername, $username, $password, $dbname);
+    $controlador = new ControladorCliente();
 
     // Llamar al método para registrar al cliente
     $errores = $controlador->registrarCliente($nombre, $apellido, $nickname, $password, $telefono, $domicilio);
