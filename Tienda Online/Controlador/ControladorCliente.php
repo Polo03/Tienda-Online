@@ -1,18 +1,21 @@
 <?php
+require_once '../Modelo/ClienteDAO.php';
 class ControladorCliente {
     private $conn;
+    private $clienteDAO;
 
-    public function __construct($servername, $username, $password, $dbname) {
-        try {
+    public function __construct() {
+        /*try {
             $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Error de conexión: " . $e->getMessage());
-        }
+        }*/
+        $this->clienteDAO=new ClienteDAO();
     }
 
     // Validar los datos del cliente
-    private function validarDatos($nombre, $apellido, $nickname, $password, $telefono, $domicilio) {
+    private function validarDatosRegistro($nombre, $apellido, $nickname, $password, $telefono, $domicilio) {
         $errores = [];
 
         // Validación de que no estén vacíos
@@ -46,6 +49,31 @@ class ControladorCliente {
         }
 
         return $errores;
+    }
+    public function validarDatosLogin($nickname, $password){
+        try {
+            if($this->clienteDAO->getClienteByNickname($nickname)){
+                if($this->clienteDAO->getClienteByNicknameAndPassword($nickname, $password)){
+                    // Crear una nueva instancia de la clase Usuario
+                    $nuevoCliente = new Cliente($nickname, $password);
+
+                    // Guardar el objeto Usuario en la sesión
+                    $_SESSION['cliente'] = $nuevoCliente;
+
+                    header('location: ../Vista/tienda.php');
+                }else{
+                    $error1= "Inicio de sesion incorrecto.";
+                    header("location:../Vista/login.php?error1=$error1");
+                    exit();
+                }
+            }else{
+                $error2= "Usuario no existente.";
+                header("location:../Vista/login.php?error2=$error2");
+                exit();
+            }
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     // Insertar el cliente en la base de datos si los datos son válidos
