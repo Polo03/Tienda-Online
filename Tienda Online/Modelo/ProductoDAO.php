@@ -8,7 +8,7 @@ class ProductoDAO {
         $this->conn = db::getConnection();
     }
     public function getProductoById($id) {
-        $stmt = $this->conn->prepare("SELECT * FROM productos WHERE id = :id");
+        $stmt = $this->conn->prepare("SELECT * FROM producto WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,6 +31,18 @@ class ProductoDAO {
             return null; // Si no se encuentra, devolvemos null
         }
     }
+
+    public function getLastId(){
+        // Consulta SQL para obtener el último ID insertado
+        $consulta = $this->conn->query("SELECT MAX(id) AS ultimo_id FROM producto");
+
+        // Obtener el resultado de la consulta
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        // Devolver el último ID
+        return $resultado['ultimo_id'];
+    }
+
     // Metodo que retorna una lista de empleados como objetos DTOEmpleado
     public function getAllProductos() {
         $stmt = $this->conn->prepare("SELECT * FROM producto");
@@ -47,12 +59,13 @@ class ProductoDAO {
     }
 
     public function addProducto($producto) {
-        $stmt = $this->conn->prepare("INSERT INTO producto (nombre, descripcion, precio, imagen) VALUES (:nombre, :descripcion, :precio, :imagen)");
+        $stmt = $this->conn->prepare("INSERT INTO producto (id, nombre, descripcion, precio, imagen) VALUES (:id, :nombre, :descripcion, :precio, :imagen)");
+        $id = $producto->getId();
         $nombre = $producto->getNombre();
         $descripcion = $producto->getDescripcion();
         $precio = $producto->getPrecio();
         $imagen = $producto->getImagen();
-        //$stmt->bindParam(':id', $producto->getId());
+        $stmt->bindParam(':id', $id);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':descripcion', $descripcion);
         $stmt->bindParam(':precio', $precio);

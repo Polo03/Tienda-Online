@@ -17,11 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen = trim($_POST['imagen']);
 
     if (empty($errores)) {
+        $productoDAO = new ProductoDAO();
+        $id = $productoDAO->getLastId();
+        $id = $id + 1;
         // Si no hay errores, crear una instancia del controlador
         $controlador = new ControlProducto();
 
         // Llamar al método para insertar el producto
-        $producto = new DTOProducto($nombre, $descripcion, $precio, $imagen);
+        $producto = new DTOProducto($id, $nombre, $descripcion, $precio, $imagen);
         $controlador->crearProducto($producto);
     } else {
         // Si hay errores, mostrarlos

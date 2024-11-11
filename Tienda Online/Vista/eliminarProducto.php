@@ -14,13 +14,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = trim($_POST['nombre']);
 
     if (empty($errores)) {
-        // Si no hay errores, crear una instancia del controlador
-        $controlador = new ControlProducto();
+        $productoDAO = new ProductoDAO();
+        $producto = $productoDAO->getProductoByName($nombre);
+        if ($producto != null) {
+            $id = $producto->getId();
+            // Si no hay errores, crear una instancia del controlador
+            $controlador = new ControlProducto();
 
-        // Llamar al método para eliminar el producto
-        $producto = new DTOProducto($nombre, null, 1, null);
-        $controlador->eliminarProducto($producto);
-    } else {
+            // Llamar al método para eliminar el producto
+            $controlador->eliminarProducto($producto);
+        } else {
+            echo "No existe ese nombre de producto";
+        }
+    }else {
         // Si hay errores, mostrarlos
         foreach ($errores as $error) {
             echo "<p style='color: red;'>$error</p>";
