@@ -25,6 +25,10 @@ class ControlProducto{
             return true;
         }
     }
+    public function modificarProducto($producto) {
+        $this->productoDAO->updateProducto($producto);
+        header("Location: ../Vista/tienda.php");
+    }
     public function eliminarProducto($producto) {
         if($this->productoDAO->getProductoById($producto->getId()) !== null){
             $this->productoDAO->deleteProducto($producto);

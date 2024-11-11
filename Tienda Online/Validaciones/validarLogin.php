@@ -6,5 +6,4 @@ $controlador = new ControladorCliente();
 
 $controlador->validarDatosLogin($_POST["user"], $_POST["pass"]);
 
-$conn = null;
 ?>

@@ -41,9 +41,9 @@
                     <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Modificar</button>
                 </form>
                 <form action="" method="get" style="display:inline;">
-                    <button type="submit" name="id" value="<?php echo $producto->getId();; ?>">Añadir al carrito</button>
+                    <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Añadir al carrito</button>
                 </form>
-                <form action="" method="post" style="display:inline;">
+                <form action="eliminarProducto.php" method="post" style="display:inline;">
                     <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Eliminar</button>
                 </form>
             </td>
