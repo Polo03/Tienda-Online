@@ -1,7 +1,7 @@
 <?php
 // Archivo Cliente.php
 
-class Cliente {
+class Producto {
     private $nombre;
     private $descripcion;
     private $precio;
