@@ -9,29 +9,48 @@
     <link rel="stylesheet" href="../CSS/tienda.css">
 </head>
 <body>
-    <div class="header">
-        <div class="usuario">
-            <?php
-            require_once '../Modelo/Cliente.php';
 
-            session_start();
-            $datosSerializados = serialize($_SESSION['cliente']);
-            $obj = unserialize($datosSerializados);
-            echo "Bienvenido, " . htmlspecialchars($obj->getUsuario()) . "<br>";
+<h2 style="text-align: center;">Productos de la tienda</h2>
 
-            ?>
-            <div class="menu">
-                <a href="cerrar_sesion.php">Cerrar sesión</a>
-            </div>
-        </div>
-    </div>
-    <div class="botones">
-        <div class="container">
-            <button class="btn" onclick="window.location.href='select.php'">Listar Productos</button>
-            <button class="btn" onclick="window.location.href='insert.php'">Insertar producto</button>
-            <button class="btn" onclick="window.location.href='update.php'">Modificar Producto</button>
-            <button class="btn" onclick="window.location.href='delete.php'">Eliminar Producto</button>
-        </div>
-    </div>
+<!-- Botón fuera de la tabla para añadir productos -->
+<form action="" method="post" style="text-align: center;">
+    <button class="btn-add-product" type="submit" name="add_new_product">Añadir Producto</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th></th>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    require_once '../Controlador/ControlProducto.php';
+    $controlador=new ControlProducto();
+    $productos=$controlador->getAllProductos();
+    foreach ($productos as $producto):?>
+        <tr>
+            <td><?php echo "<img src=".$producto->getImagen().">"?></td>
+            <td><?php echo $producto->getNombre(); ?></td>
+            <td><?php echo "$" . $producto->getPrecio(); ?></td>
+            <td>
+                <form action="modificarProducto.php" method="get" style="display:inline;">
+                    <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Modificar</button>
+                </form>
+                <form action="" method="get" style="display:inline;">
+                    <button type="submit" name="id" value="<?php echo $producto->getId();; ?>">Añadir al carrito</button>
+                </form>
+                <form action="" method="post" style="display:inline;">
+                    <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
 </body>
 </html>

@@ -37,37 +37,28 @@ body {
 .menu a:hover {
     background-color: #f0f0f0;
 }
-.container {
-    margin: 25%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-    grid-gap: 20px;
+table {
     width: 60%;
-    max-width: 800px;  /* Limitar el tamaño máximo de los botones */
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
     text-align: center;
-    justify-content: center;
+    border: 1px solid #ddd;
 }
-
-/* Estilo para los botones */
-.btn {
-    padding: 20px 40px;
-    font-size: 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 10px;
+button {
+    padding: 5px 10px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    width: 100%;  /* Hacer que los botones ocupen el 100% del ancho de su celda */
 }
-
-/* Efecto al pasar el ratón */
-.btn:hover {
-    background-color: #0056b3;
-    transform: scale(1.1);
-}
-
-/* Efecto al hacer clic */
-.btn:active {
-    transform: scale(0.9);
+.btn-add-product {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
 }

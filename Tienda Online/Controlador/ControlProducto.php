@@ -4,7 +4,12 @@ class ControlProducto{
     public function __construct() {
         $this->productoDAO = new ProductoDAO();
     }
-
+    public function getProducto($id) {
+        return $this->productoDAO->getProductoById($id);
+    }
+    public function getAllProductos() {
+        return $this->productoDAO->getAllProductos();
+    }
     public function crearProducto($producto) {
         if($this->productoDAO->getProductoByName($producto->getNombre()) !== null){
             echo "<p>Producto ya registrado</p>";

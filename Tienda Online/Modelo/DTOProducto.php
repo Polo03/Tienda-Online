@@ -7,9 +7,9 @@ class DTOProducto
     private $precio;
     private $imagen;
 
-    public function __construct($nombre, $descripcion, $precio, $imagen)
+    public function __construct($id, $nombre, $descripcion, $precio, $imagen)
     {
-        //$this->id = $id;
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->precio = $precio;
