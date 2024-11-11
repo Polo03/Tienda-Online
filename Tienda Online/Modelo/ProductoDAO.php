@@ -69,10 +69,20 @@ class ProductoDAO {
         return $stmt->execute();
     }
 
-    public function deleteProducto($id) {
-        $stmt = $this->conn->prepare("DELETE FROM producto WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        return $stmt->execute();
-    }
-}
+    public function deleteProducto($producto) {
+        try {
+            $sql = "DELETE FROM producto WHERE nombre = :nombre";
+            $stmt = $this->conn->prepare($sql);
+
+            // Extraer el atributo 'nombre' del objeto $producto y pasarlo al bindParam
+            $nombreProducto = $producto->getNombre();
+            $stmt->bindParam(':nombre', $nombreProducto);
+
+            $stmt->execute();
+            return $stmt->rowCount() > 0; // Retorna true si se eliminó alguna fila
+        } catch (PDOException $e) {
+            echo "Error al eliminar el producto: " . $e->getMessage();
+            return false;
+        }
+    }}
 ?>

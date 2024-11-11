@@ -12,17 +12,14 @@ $dbname = "mi_tienda";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $nombre = trim($_POST['nombre']);
-    $descripcion = trim($_POST['descripcion']);
-    $precio = trim($_POST['precio']);
-    $imagen = trim($_POST['imagen']);
 
     if (empty($errores)) {
         // Si no hay errores, crear una instancia del controlador
         $controlador = new ControlProducto();
 
-        // Llamar al método para insertar el producto
-        $producto = new DTOProducto($nombre, $descripcion, $precio, $imagen);
-        $controlador->crearProducto($producto);
+        // Llamar al método para eliminar el producto
+        $producto = new DTOProducto($nombre, null, 1, null);
+        $controlador->eliminarProducto($producto);
     } else {
         // Si hay errores, mostrarlos
         foreach ($errores as $error) {
@@ -37,25 +34,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insertar Producto</title>
-    <link rel="stylesheet" href="../CSS/insertarProducto.css">
+    <title>Eliminar Producto</title>
+    <link rel="stylesheet" href="../CSS/eliminarProducto.css">
 </head>
 <body>
-<h2>Insertar Producto</h2>
+<h2>Eliminar Producto</h2>
 <form method="POST" action="">
-    <label for="nombre">Nombre:</label>
+    <label for="nombre">Nombre del producto:</label>
     <input type="text" id="nombre" name="nombre" required><br><br>
 
-    <label for="descripcion">Descripcion:</label>
-    <input type="text" id="descripcion" name="descripcion" required><br><br>
-
-    <label for="precio">Precio:</label>
-    <input type="number" id="precio" name="precio" required><br><br>
-
-    <label for="imagen">Imagen:</label>
-    <input type="text" id="imagen" name="imagen" required><br><br>
-
-    <button type="submit">Insertar Producto</button>
+    <button type="submit">Eliminar Producto</button>
 </form>
 </body>
 </html>

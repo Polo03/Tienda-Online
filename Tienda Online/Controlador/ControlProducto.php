@@ -25,5 +25,14 @@ class ControlProducto{
             return true;
         }
     }
+    public function eliminarProducto($producto) {
+        if($this->productoDAO->getProductoByName($producto->getNombre()) !== null){
+            $this->productoDAO->deleteProducto($producto);
+            echo "<p>Producto eliminado</p>";
+        }
+        else{
+            echo "<p>El producto no existe</p>";
+        }
+    }
 }
 ?>
