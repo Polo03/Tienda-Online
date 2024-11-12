@@ -38,7 +38,7 @@
             <td><?php echo "$" . $producto->getPrecio(); ?></td>
             <td>
                 <form action="modificarProducto.php" method="get" style="display:inline;">
-                    <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Modificar</button>
+                    <button type="submit" name="id_modificar" value="<?php echo $producto->getId(); ?>">Modificar</button>
                 </form>
                 <form action="" method="get" style="display:inline;">
                     <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Añadir al carrito</button>

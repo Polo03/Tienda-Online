@@ -29,8 +29,26 @@ class ControlProducto{
         }
     }
     public function modificarProducto($producto) {
-        $this->productoDAO->updateProducto($producto);
-        header("Location: ../Vista/tienda.php");
+        if($this->productoDAO->getProductoByIdAndName($producto->getId(),$producto->getNombre()) !== null){
+            // Datos de ejemplo
+            $error = 'Producto con nombre existente';
+            $id = $producto->getId();
+
+            header("Location: ../Vista/modificarProducto.php?error=$error&id=$id");
+            return false;
+        }
+        elseif($producto->getPrecio() <= 0){
+            // Datos de ejemplo
+            $error = 'El precio no puede ser menor a 0';
+            $id = $producto->getId();
+            header("Location: ../Vista/modificarProducto.php?error=$error&id=$id");
+            return false;
+        }
+        else {
+            $this->productoDAO->updateProducto($producto);
+            header("location: ../Vista/tienda.php");
+            return true;
+        }
     }
     public function eliminarProducto($producto) {
         if($this->productoDAO->getProductoById($producto->getId()) !== null){

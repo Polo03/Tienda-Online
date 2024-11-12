@@ -32,6 +32,19 @@ class ProductoDAO {
         }
     }
 
+    public function getProductoByIdAndName($id, $nombre) {
+        $stmt = $this->conn->prepare("SELECT * FROM producto WHERE id != :id AND nombre = :nombre");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($fila) {
+            return new DTOProducto($fila['id'], $fila['nombre'], $fila['descripcion'], $fila['precio'],$fila['imagen']);
+        } else {
+            return null; // Si no se encuentra, devolvemos null
+        }
+    }
     public function getLastId(){
         // Consulta SQL para obtener el último ID insertado
         $consulta = $this->conn->query("SELECT MAX(id) AS ultimo_id FROM producto");

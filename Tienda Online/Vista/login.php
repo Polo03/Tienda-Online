@@ -13,10 +13,8 @@
     <h2>Inicio de Sesión</h2>
     <?php ;
     // Mostrar avisos si existen en la URL
-    if (isset($_GET['error1']))
-        echo "<p style='color: red;'>$_GET[error1]</p>";
-    if (isset($_GET['error2']))
-        echo "<p style='color: red;'>$_GET[error2] <a href='registrar.php'>¿Quiere registrarse?</a></p>";
+    if (isset($_GET['error']))
+        echo "<p style='color: red;'>$_GET[error]</p>";
     ?>
     <form action="../Validaciones/validarLogin.php" method="post">
         <input type="text" name="user" placeholder="Usuario" required>

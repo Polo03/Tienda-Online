@@ -24,12 +24,12 @@ class ControladorCliente {
                     header('location: ../Vista/tienda.php');
                 }else{
                     $error1= "Inicio de sesion incorrecto.";
-                    header("location:../Vista/login.php?error1=$error1");
+                    header("location:../Vista/login.php?error=Inicio de sesion incorrecto.");
                     exit();
                 }
             }else{
                 $error2= "Usuario no existente.";
-                header("location:../Vista/login.php?error2=$error2");
+                header("location:../Vista/login.php?error=Usuario no existente.");
                 exit();
             }
         } catch(PDOException $e) {

@@ -12,5 +12,9 @@ class ControladorProducto {
         $this->controlProducto->crearProducto($producto);
     }
 
+    public function actualizarProducto($producto) {
+        $this->controlProducto->modificarProducto($producto);
+    }
+
 }
 ?>
