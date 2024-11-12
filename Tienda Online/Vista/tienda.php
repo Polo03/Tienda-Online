@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+require_once '../Modelo/Cliente.php';
+// Aseguramos que $_SESSION['carrito'] esté inicializado, incluso si no hay productos en el carrito
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
+}
+
+// Obtener el número de productos en el carrito
+$numeroProductos = count($_SESSION['carrito']);
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,12 +23,39 @@
     <link rel="stylesheet" href="../CSS/tienda.css">
 </head>
 <body>
+<!-- Franja superior con el carrito -->
+
+
+
+<div class="header">
+    <div class="usuario">
+        <div class="contenedor-carrito">
+            <a href="carrito.php" class="carrito-link">
+                <!-- Icono de carrito -->
+                <img src="https://cdn-icons-png.flaticon.com/128/2601/2601726.png" width="30px">
+                <!-- Círculo con el número de productos -->
+                <div class="carrito-cantidad">
+                    <span id="carrito-cantidad"><?php echo $numeroProductos; ?></span>
+                </div>
+
+            </a>
+        </div>
+        <?php
+        $datosSerializados = serialize($_SESSION['cliente']);
+        $obj = unserialize($datosSerializados);
+        echo "Bienvenido, " . htmlspecialchars($obj->getUsuario());
+        ?>
+        <div class="menu">
+            <a href="cerrar_sesion.php">Cerrar sesión</a>
+        </div>
+    </div>
+</div>
 
 <h2 style="text-align: center;">Productos de la tienda</h2>
 
 <!-- Botón fuera de la tabla para añadir productos -->
 <form action="../Vista/insertarProducto.php" method="post" style="text-align: center;">
-    <button class="btn-add-product" type="submit" name="add_new_product">Añadir Producto</button>
+    <button class="btn-add-product" type="submit" name="añadeProducto">Añadir Producto</button>
 </form>
 
 <table>

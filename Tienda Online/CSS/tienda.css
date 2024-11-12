@@ -8,7 +8,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding-top: 5px;
+    padding-right: 10px;
     background-color: #007bff;
     color: white;
 }
@@ -61,4 +62,40 @@ button {
     text-align: center;
     border: none;
     border-radius: 5px;
+}
+
+.contenedor-carrito {
+    display: inline-block;
+    position: relative;
+    margin-right: 20px;
+    margin-bottom: 0px;
+}
+
+.carrito-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.carrito-link i {
+    margin-right: 10px; /* Espacio entre el icono y el número */
+}
+
+/* Estilo para el círculo con el número de productos */
+.carrito-cantidad {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 50%; /* Hacer el círculo */
+    font-weight: bold;
+    line-height: 20px; /* Alineamos el número al centro */
 }

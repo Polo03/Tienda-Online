@@ -7,31 +7,40 @@
     <link rel="stylesheet" href="../CSS/insertarProducto.css">
 </head>
 <body>
-<h2>Insertar Producto</h2>
-<?php
 
-if (isset($_GET['error'])) {
-    $error = explode(",", $_GET['error']);
-    foreach ($error as $msg) {
-        echo "<p style='color: red;'>$msg</p>";
-    }
-}
-?>
-<form method="POST" action="../Validaciones/validarInsertar.php">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" pattern="{1,}"><br><br>
+<!-- Contenedor principal que actúa como el pop-up -->
+<div class="popup-overlay">
+    <div class="popup-content">
+        <h1>Insertar Producto</h1>
+        <?php
+        // Mostrar avisos si existen en la URL
+        if (isset($_GET['error']))
+            echo "<p style='color: red;'>$_GET[error]</p>";
+        ?>
+        <!-- Formulario -->
+        <form action="../Validaciones/validarInsertar.php" method="POST">
+            <!-- Campo Nombre -->
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" pattern="{1,}"><br><br>
 
-    <label for="descripcion">Descripcion:</label>
-    <input type="text" id="descripcion" name="descripcion" pattern="{1,}"><br><br>
+            <!-- Campo Precio -->
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" pattern="^\d+,\d{2}$"><br><br>
 
-    <label for="precio">Precio:</label>
-    <input type="number" id="precio" name="precio" pattern="^\d+,\d{2}$"><br><br>
+            <!-- Campo Descripción -->
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" rows="4"></textarea><br>
 
-    <label for="imagen">Imagen:</label>
-    <input type="text" id="imagen" name="imagen" pattern="{1,}"><br><br>
+            <!-- Campo Precio -->
+            <label for="imagen">Imagen (URL):</label>
+            <input type="text" id="imagen" name="imagen" pattern="{1,}"><br><br>
 
-    <button type="submit" name="accion" value="insertar">Insertar Producto</button>
-    <button class="close-btn" type="submit" name="accion" value="cerrar">Salir</button>
-</form>
+            <button type="submit" name="accion" value="insertar">Insertar Producto</button>
+            <button class="close-btn" type="submit" name="accion" value="cerrar">Salir</button>
+        </form>
+    </div>
+</div>
+
+
 </body>
 </html>
