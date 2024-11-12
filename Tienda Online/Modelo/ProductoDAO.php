@@ -60,7 +60,7 @@ class ProductoDAO {
 
     public function addProducto($producto) {
         $stmt = $this->conn->prepare("INSERT INTO producto (id, nombre, descripcion, precio, imagen) VALUES (:id, :nombre, :descripcion, :precio, :imagen)");
-        $id = $producto->getId();
+        $id=$producto->getId();
         $nombre = $producto->getNombre();
         $descripcion = $producto->getDescripcion();
         $precio = $producto->getPrecio();

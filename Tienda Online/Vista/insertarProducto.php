@@ -1,36 +1,9 @@
 <?php
-require_once '../Controlador/ControlProducto.php'; // Incluir el archivo del controlador
-require_once '../Validaciones/ValidarProducto.php'; // Incluir la clase de validación
-require_once '../Modelo/Producto.php';
 
-
-$servername = "localhost";
-$username = "Carlos";
-$password = "123";
-$dbname = "mi_tienda";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
-    $nombre = trim($_POST['nombre']);
-    $descripcion = trim($_POST['descripcion']);
-    $precio = trim($_POST['precio']);
-    $imagen = trim($_POST['imagen']);
-
-    if (empty($errores)) {
-        $productoDAO = new ProductoDAO();
-        $id = $productoDAO->getLastId();
-        $id = $id + 1;
-        // Si no hay errores, crear una instancia del controlador
-        $controlador = new ControlProducto();
-
-        // Llamar al método para insertar el producto
-        $producto = new DTOProducto($id, $nombre, $descripcion, $precio, $imagen);
-        $controlador->crearProducto($producto);
-    } else {
-        // Si hay errores, mostrarlos
-        foreach ($errores as $error) {
-            echo "<p style='color: red;'>$error</p>";
-        }
+if (isset($_GET['error'])) {
+    $error = explode(",", $_GET['error']);
+    foreach ($error as $msg) {
+        echo "<p style='color: red;'>$msg</p>";
     }
 }
 ?>
@@ -45,18 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <h2>Insertar Producto</h2>
-<form method="POST" action="">
+<form method="POST" action="../Validaciones/validarInsertar.php">
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
+    <input type="text" id="nombre" name="nombre" pattern="{1,}" required><br><br>
 
     <label for="descripcion">Descripcion:</label>
-    <input type="text" id="descripcion" name="descripcion" required><br><br>
+    <input type="text" id="descripcion" name="descripcion" pattern="{1,}" required><br><br>
 
     <label for="precio">Precio:</label>
-    <input type="number" id="precio" name="precio" required><br><br>
+    <input type="number" id="precio" name="precio" pattern="^\d+,\d{2}$" required><br><br>
 
     <label for="imagen">Imagen:</label>
-    <input type="text" id="imagen" name="imagen" required><br><br>
+    <input type="text" id="imagen" name="imagen" pattern="{1,}" required><br><br>
 
     <button type="submit">Insertar Producto</button>
 </form>

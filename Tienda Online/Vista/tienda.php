@@ -13,7 +13,7 @@
 <h2 style="text-align: center;">Productos de la tienda</h2>
 
 <!-- Botón fuera de la tabla para añadir productos -->
-<form action="" method="post" style="text-align: center;">
+<form action="../Vista/insertarProducto.php" method="post" style="text-align: center;">
     <button class="btn-add-product" type="submit" name="add_new_product">Añadir Producto</button>
 </form>
 

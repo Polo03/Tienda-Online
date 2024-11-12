@@ -1,5 +1,5 @@
 <?php
-require '../Modelo/ProductoDAO.php';
+require_once '../Modelo/ProductoDAO.php';
 class ControlProducto{
     public function __construct() {
         $this->productoDAO = new ProductoDAO();
@@ -12,16 +12,19 @@ class ControlProducto{
     }
     public function crearProducto($producto) {
         if($this->productoDAO->getProductoByName($producto->getNombre()) !== null){
-            echo "<p>Producto ya registrado</p>";
+            header("location: ../Vista/insertarProducto.php?error=Producto ya registrado");
             return false;
         }
         elseif($producto->getPrecio() <= 0){
+            header("location: ../Vista/insertarProducto.php?error=El precio no puede ser menor a 0");
             echo "<p>El precio no puede ser menor a 0</p>";
             return false;
         }
         else {
+            $producto->setId($this->productoDAO->getLastId()+1);
             $this->productoDAO->addProducto($producto);
             echo "<p>Nuevo producto creado exitosamente</p>";
+            header("location: ../Vista/tienda.php");
             return true;
         }
     }

@@ -1,38 +1,5 @@
 <?php
-require_once '../Controlador/ControlProducto.php'; // Incluir el archivo del controlador
-require_once '../Validaciones/ValidarProducto.php'; // Incluir la clase de validación
-require_once '../Modelo/Producto.php';
 
-
-$servername = "localhost";
-$username = "Carlos";
-$password = "123";
-$dbname = "mi_tienda";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
-    $nombre = trim($_POST['nombre']);
-
-    if (empty($errores)) {
-        $productoDAO = new ProductoDAO();
-        $producto = $productoDAO->getProductoByName($nombre);
-        if ($producto != null) {
-            $id = $producto->getId();
-            // Si no hay errores, crear una instancia del controlador
-            $controlador = new ControlProducto();
-
-            // Llamar al método para eliminar el producto
-            $controlador->eliminarProducto($producto);
-        } else {
-            echo "No existe ese nombre de producto";
-        }
-    }else {
-        // Si hay errores, mostrarlos
-        foreach ($errores as $error) {
-            echo "<p style='color: red;'>$error</p>";
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
