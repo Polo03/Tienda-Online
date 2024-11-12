@@ -1,24 +1,19 @@
 <?php
-require '../Modelo/ClienteDAO.php';
+require_once '../Modelo/ClienteDAO.php';
 class ControlCliente{
     public function __construct() {
         $this->clienteDAO = new ClienteDAO();
     }
-    /*public function getEmpleado($id) {
-        return $this->empleadoDAO->getEmpleadoById($id);
-    }
-    public function getEmpleados() {
-        return $this->empleadoDAO->getAllEmpleados();
-    }*/
 
     public function crearCliente($cliente) {
+
         if($this->clienteDAO->getClienteByNickname($cliente->getNickname()) !== null){
-            echo "<p>Usuario ya registrado</p>";
+            header("location: ../Vista/registrar.php?error=Usuario ya registrado");
             return false;
         }
         else {
             $this->clienteDAO->addCliente($cliente);
-            // Crear una nueva instancia de la clase Usuario
+            // Crear una nueva instancia de la clase Cliente
             $nuevoCliente = new Cliente($cliente->getNickname(), $cliente->getPassword());
 
             // Guardar el objeto Usuario en la sesión
