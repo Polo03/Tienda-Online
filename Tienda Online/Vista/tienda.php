@@ -41,10 +41,10 @@
                     <button type="submit" name="id_modificar" value="<?php echo $producto->getId(); ?>">Modificar</button>
                 </form>
                 <form action="" method="get" style="display:inline;">
-                    <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Añadir al carrito</button>
+                    <button type="submit" name="id_carrito" value="<?php echo $producto->getId(); ?>">Añadir al carrito</button>
                 </form>
-                <form action="eliminarProducto.php" method="post" style="display:inline;">
-                    <button type="submit" name="id" value="<?php echo $producto->getId(); ?>">Eliminar</button>
+                <form action="eliminarProducto.php" method="get" style="display:inline;">
+                    <button type="submit" name="id_eliminar" value="<?php echo $producto->getId(); ?>">Eliminar</button>
                 </form>
             </td>
         </tr>

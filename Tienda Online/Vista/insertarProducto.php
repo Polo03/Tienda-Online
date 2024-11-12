@@ -31,7 +31,7 @@ if (isset($_GET['error'])) {
     <input type="text" id="imagen" name="imagen" pattern="{1,}"><br><br>
 
     <button type="submit" name="accion" value="insertar">Insertar Producto</button>
-    <button class="close-btn" type="submit" name="accion" value="cerrar">Cerrar</button>
+    <button class="close-btn" type="submit" name="accion" value="cerrar">Salir</button>
 </form>
 </body>
 </html>

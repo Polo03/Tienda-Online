@@ -21,7 +21,7 @@ if (isset($_GET['id_modificar'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Formulario en Pop-up</title>
+    <title>Modificar Producto</title>
     <link rel="stylesheet" href="../CSS/modificarProducto.css">
 </head>
 <body>
@@ -69,7 +69,7 @@ if (isset($_GET['id_modificar'])) {
             <input type="text" id="imagen" name="imagen" value="<?php echo $imagen;?>" required><br>
 
             <button type="submit">Modificar</button>
-            <button class="close-btn" onclick="window.location.href='tienda.php">Cerrar</button>
+            <button class="close-btn" onclick="window.location.href='tienda.php">Salir</button>
         </form>
 
 

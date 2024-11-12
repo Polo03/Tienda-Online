@@ -51,13 +51,8 @@ class ControlProducto{
         }
     }
     public function eliminarProducto($producto) {
-        if($this->productoDAO->getProductoById($producto->getId()) !== null){
-            $this->productoDAO->deleteProducto($producto);
-            echo "<p>Producto eliminado</p>";
-        }
-        else{
-            echo "<p>El producto no existe</p>";
-        }
+        $this->productoDAO->deleteProducto($producto);
+        header("location: ../Vista/tienda.php");
     }
 }
 ?>

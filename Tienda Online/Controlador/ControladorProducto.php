@@ -11,9 +11,12 @@ class ControladorProducto {
     public function registrarProducto($producto) {
         $this->controlProducto->crearProducto($producto);
     }
-
     public function actualizarProducto($producto) {
         $this->controlProducto->modificarProducto($producto);
+    }
+
+    public function eliminarProducto($producto) {
+        $this->controlProducto->eliminarProducto($producto);
     }
 
 }
