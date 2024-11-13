@@ -1,0 +1,235 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+section {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* El input checkbox está oculto, pero se usa para controlar el contenido */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Estilos del contenido */
+.content {
+    display: none; /* El contenido está oculto por defecto */
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Cuando el checkbox está marcado, se muestra el contenido */
+input[type="checkbox"]:checked ~ .content {
+    display: block;
+}
+
+/* Estilo para el label que actúa como un botón */
+label {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+label:hover {
+    color: #45a049;
+}
+
+.content p {
+    margin: 0;
+    color: #666;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+/* Estilos generales */
+.barra-superior {
+    display: flex;
+    justify-content: flex-end;  /* Alinea todo el contenido a la derecha */
+    align-items: center;
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+    position: relative;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    margin-left: 20px; /* Espacio entre la imagen y la palabra */
+}
+
+.menu-container {
+    position: relative;
+}
+
+/* Estilos de la palabra "Menú" */
+.palabra {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Estilos del menú que aparece cuando el ratón pasa sobre la palabra */
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Posicionar debajo de la palabra */
+    left: 0;
+    background-color: #444;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    min-width: 140px;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #555;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.menu ul li:hover {
+    background-color: #555;
+}
+
+.boton-imagen {
+    display: inline-block;  /* Hace que la imagen se comporte como un bloque en línea */
+    text-decoration: none;   /* Elimina el subrayado del enlace */
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    margin-left: 20px; /* Espacio entre la imagen y la palabra */
+    transition: transform 0.3s ease; /* Animación suave al hacer hover */
+}
+
+/* Estilo del hover sobre la imagen (cuando pasas el ratón por encima) */
+.boton-imagen:hover .logo {
+    transform: scale(1.1);  /* Aumenta ligeramente el tamaño de la imagen */
+}
+
+/* Mostrar el menú cuando el ratón está sobre la palabra */
+.menu-container:hover .menu {
+    display: block;
+}
+
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.btn-add-product {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+}
+
+.contenedor-carrito {
+    display: inline-block;
+    position: relative;
+    margin-right: 20px;
+    margin-bottom: 0px;
+}
+
+.carrito-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.carrito-link i {
+    margin-right: 10px; /* Espacio entre el icono y el número */
+}
+
+/* Estilo para el círculo con el número de productos */
+.carrito-cantidad {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 50%; /* Hacer el círculo */
+    font-weight: bold;
+    line-height: 20px; /* Alineamos el número al centro */
+}
+.botones{
+    height: 200px;
+    padding-left: 20%;
+}
+
+.accept-btn{
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 65%;
+    margin-top: 10px;
+}
+.accept-btn:hover{
+    background-color: #218838;
+}
+
+/* Estilo del botón de cerrar */
+.close-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+    width: 10%;
+}
+
+.close-btn:hover {
+    background-color: #c82333;
+}

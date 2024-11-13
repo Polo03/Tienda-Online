@@ -45,7 +45,7 @@ $numeroProductos = count($_SESSION['carrito']);
         </span>
         <div class="menu">
             <ul>
-                <li><a href="#">Historial de compras</a></li>
+                <li><a href="historial_compras.php">Historial de compras</a></li>
                 <li><a href="cerrar_sesion.php">Cerrar Sesión</a></li>
             </ul>
         </div>
