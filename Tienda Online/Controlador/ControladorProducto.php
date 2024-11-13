@@ -19,5 +19,6 @@ class ControladorProducto {
         $this->controlProducto->eliminarProducto($producto);
     }
 
+
 }
 ?>

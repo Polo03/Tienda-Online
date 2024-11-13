@@ -23,31 +23,34 @@ $numeroProductos = count($_SESSION['carrito']);
     <link rel="stylesheet" href="../CSS/tienda.css">
 </head>
 <body>
-<!-- Franja superior con el carrito -->
+<!-- Barra superior -->
+<div class="barra-superior">
+
+    <div class="contenedor-carrito">
+        <a href="carrito.php" class="carrito-link">
+            <img src="https://cdn-icons-png.flaticon.com/128/2601/2601726.png" width="30px">
+            <div class="carrito-cantidad">
+                <span id="carrito-cantidad"><?php echo $numeroProductos; ?></span>
+            </div>
+
+        </a>
+    </div>
 
 
+    <div class="menu-container">
+        <span class="palabra">
+            <?php
 
-<div class="header">
-    <div class="usuario">
-        <div class="contenedor-carrito">
-            <a href="carrito.php" class="carrito-link">
-                <!-- Icono de carrito -->
-                <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" width="30px">
-                <!-- Círculo con el número de productos -->
-                <div class="carrito-cantidad">
-                    <span id="carrito-cantidad"><?php echo $numeroProductos; ?></span>
-                </div>
-
-            </a>
-        </div>
-        <?php
-        $datosSerializados = serialize($_SESSION['cliente']);
-        $obj = unserialize($datosSerializados);
-        echo "Bienvenido, " . htmlspecialchars($obj->getUsuario());
-        ?>
+            $datosSerializados = serialize($_SESSION['cliente']);
+            $obj = unserialize($datosSerializados);
+            echo "Bienvenido, " . htmlspecialchars($obj->getUsuario());
+            ?>
+        </span>
         <div class="menu">
-            <a href="cerrar_sesion.php">Historial de compras</a>
-            <a href="cerrar_sesion.php">Cerrar sesión</a>
+            <ul>
+                <li><a href="#">Historial de compras</a></li>
+                <li><a href="cerrar_sesion.php">Cerrar Sesión</a></li>
+            </ul>
         </div>
     </div>
 </div>
@@ -85,7 +88,7 @@ $numeroProductos = count($_SESSION['carrito']);
                 <form action="modificarProducto.php" method="get" style="display:inline;">
                     <button type="submit" name="id_modificar" value="<?php echo $producto->getId(); ?>">Modificar</button>
                 </form>
-                <form action="" method="get" style="display:inline;">
+                <form action="../Validaciones/anyadirCarrito.php" method="get" style="display:inline;">
                     <button type="submit" name="id_carrito" value="<?php echo $producto->getId(); ?>">Añadir al carrito</button>
                 </form>
                 <form action="eliminarProducto.php" method="get" style="display:inline;">

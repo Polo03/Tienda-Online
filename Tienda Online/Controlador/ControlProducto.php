@@ -54,5 +54,6 @@ class ControlProducto{
         $this->productoDAO->deleteProducto($producto);
         header("location: ../Vista/tienda.php");
     }
+
 }
 ?>
