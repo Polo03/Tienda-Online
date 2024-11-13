@@ -50,8 +50,8 @@ if (isset($_GET['id_detalles'])) {
 
             <!-- Campo Precio -->
             <label for="imagen">Imagen (URL):</label>
-            <input type="text" id="imagen" name="imagen" value="<?php echo $imagen;?>" readonly><br>
-
+<!--            <input type="image" id="imagen" name="imagen" value="--><?php //$imagen;?><!--" readonly><br>-->
+            <?php echo '<img src="' . htmlspecialchars($imagen) . '" alt="Imagen desde la base de datos">';?>
             <button class="close-btn" type="submit" id="accion" name="salir">Salir</button>
         </form>
 

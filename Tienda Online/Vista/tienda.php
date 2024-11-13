@@ -32,7 +32,7 @@ $numeroProductos = count($_SESSION['carrito']);
         <div class="contenedor-carrito">
             <a href="carrito.php" class="carrito-link">
                 <!-- Icono de carrito -->
-                <img src="https://cdn-icons-png.flaticon.com/128/2601/2601726.png" width="30px">
+                <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" width="30px">
                 <!-- Círculo con el número de productos -->
                 <div class="carrito-cantidad">
                     <span id="carrito-cantidad"><?php echo $numeroProductos; ?></span>
@@ -46,6 +46,7 @@ $numeroProductos = count($_SESSION['carrito']);
         echo "Bienvenido, " . htmlspecialchars($obj->getUsuario());
         ?>
         <div class="menu">
+            <a href="cerrar_sesion.php">Historial de compras</a>
             <a href="cerrar_sesion.php">Cerrar sesión</a>
         </div>
     </div>
