@@ -1,15 +1,22 @@
 <?php
 
 session_start();
-require_once '../Controlador/ControlProducto.php';
+require_once '../Controlador/ControlCompras.php';
 require_once '../Modelo/Cliente.php';
+require_once '../Modelo/DTOCompra.php';
+require_once '../Controlador/ControladorCliente.php';
+require_once '../Modelo/ProductoDAO.php';
 // Aseguramos que $_SESSION['carrito'] esté inicializado, incluso si no hay productos en el carrito
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = [];
 }
 
-// Obtener el número de productos en el carrito
-$numeroProductos = count($_SESSION['carrito']);
+$numeroProductos=0;
+if(!empty($_SESSION['carrito'])) {
+    foreach($_SESSION['carrito'] as $productos){
+        $numeroProductos=$numeroProductos+$productos[1];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -51,26 +58,31 @@ $numeroProductos = count($_SESSION['carrito']);
 
 <h2 style="text-align: center;">Historial de compras</h2>
 <?php
-$control=new ControlCompras();
-$compras=$control->getAllCompras();
-// Número de secciones que quieres generar
-$secciones = 3;
-print_r($compras);
-/*// Bucle for para generar las secciones dinámicamente
-for ($i = 1; $i <= $secciones; $i++) {
+$controlCompras=new ControlCompras();
+$controladorCliente= new ControladorCliente();
+$productoDao=new ProductoDAO();
+$datosSerializados = serialize($_SESSION['cliente']);
+$obj = unserialize($datosSerializados);
+$id_cliente=$controladorCliente->getIdCliente($obj->getUsuario());
+$compras=$controlCompras->getAllComprasByIdCliente($id_cliente);
+// Bucle for para generar las secciones dinámicamente
+foreach ($compras as $i=>$compra) {
+    $nombreProducto=$productoDao->getProductoById($compra->getProductoId())->getNombre();
+    $fecha=explode(" ", $compra->getFechaCompra());
     // Generamos un ID único para cada checkbox
     $checkbox_id = "toggle" . $i;
     $label_for = "toggle" . $i;
     echo "
     <section>
         <input type='checkbox' id='$checkbox_id'>
-        <label for='$label_for'>Haz clic para ver más información de la Sección $i</label>
+        <label for='$label_for'>Compra realizada a las ".$fecha[1]." el día ".$fecha[0]."</label>
         <div class='content'>
-            <p>Este es el contenido adicional de la Sección $i. Aquí puedes agregar más detalles o información relevante.</p>
+            <p> Ha comprado ".$compra->getCantidad()." unidades del producto ".$nombreProducto." </p>
         </div>
     </section>
     ";
-}*/
+}
+
 ?>
 
 </body>

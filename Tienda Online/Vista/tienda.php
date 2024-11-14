@@ -3,13 +3,18 @@
 session_start();
 
 require_once '../Modelo/Cliente.php';
+require_once '../Modelo/Producto.php';
+require_once '../Modelo/DTOProducto.php';
 // Aseguramos que $_SESSION['carrito'] esté inicializado, incluso si no hay productos en el carrito
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = [];
 }
-
-// Obtener el número de productos en el carrito
-$numeroProductos = count($_SESSION['carrito']);
+$numeroProductos=0;
+if(!empty($_SESSION['carrito'])) {
+    foreach($_SESSION['carrito'] as $productos){
+        $numeroProductos=$numeroProductos+$productos[1];
+    }
+}
 ?>
 
 <!doctype html>

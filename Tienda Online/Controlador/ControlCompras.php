@@ -16,9 +16,10 @@ class ControlCompras{
     public function crearCompra($compra) {
         $compra->setId($this->compraDAO->getLastId()+1);
         $this->compraDAO->addCompra($compra);
-        header("location: ../Vista/tienda.php");
+//        header("location: ../Vista/tienda.php");
         return true;
     }
+
 
 }
 ?>

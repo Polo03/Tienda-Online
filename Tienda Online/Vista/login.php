@@ -14,7 +14,11 @@
     <?php ;
     // Mostrar avisos si existen en la URL
     if (isset($_GET['error']))
-        echo "<p style='color: red;'>$_GET[error]</p>";
+        if($_GET['error']=='Usuario no existente.'){
+            echo "<p style='color: red;'>$_GET[error] . <a href='registrar.php'>¿Quiere registrarse?</a></p>";
+        }else
+            echo "<p style='color: red;'>$_GET[error]</p>";
+
     ?>
     <form action="../Validaciones/validarLogin.php" method="post">
         <input type="text" name="user" placeholder="Usuario" required>

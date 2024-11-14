@@ -7,9 +7,12 @@ require_once '../Modelo/Cliente.php';
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = [];
 }
-
-// Obtener el número de productos en el carrito
-$numeroProductos = count($_SESSION['carrito']);
+$numeroProductos=0;
+if(!empty($_SESSION['carrito'])) {
+    foreach($_SESSION['carrito'] as $productos){
+        $numeroProductos=$numeroProductos+$productos[1];
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -86,8 +89,8 @@ $numeroProductos = count($_SESSION['carrito']);
 </table>
 <form action="../Validaciones/confirmarCompra.php" method="POST">
     <div class="botones">
-        <button type="submit" class="accept-btn">Comprar</button>
-        <button class="close-btn" onclick="window.location.href='tienda.php">Volver</button>
+        <button type="submit" class="accept-btn" name="comprar">Comprar</button>
+        <button class="close-btn" name="salir">Volver</button>
     </div>
 </form>
 

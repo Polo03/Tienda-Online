@@ -20,6 +20,17 @@ class ClienteDAO {
             return null; // Si no se encuentra, devolvemos null
         }
     }
+    public function getIdClienteByNickname($nickname) {
+        $stmt = $this->conn->prepare("SELECT id FROM cliente WHERE nickname = :nickname");
+        $stmt->bindParam(':nickname', $nickname);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($fila) {
+            return $fila['id'];
+        } else {
+            return null; // Si no se encuentra, devolvemos null
+        }
+    }
     public function getClienteByNickname($nickname) {
         $stmt = $this->conn->prepare("SELECT * FROM cliente WHERE nickname = :nickname");
         $stmt->bindParam(':nickname', $nickname);

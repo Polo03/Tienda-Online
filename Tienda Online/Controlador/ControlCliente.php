@@ -19,6 +19,7 @@ class ControlCliente{
             // Guardar el objeto Usuario en la sesión
             $_SESSION['cliente'] = $nuevoCliente;
 
+
             header('location: ../Vista/tienda.php');
             return true;
         }

@@ -11,6 +11,10 @@ class ControladorCliente {
         $this->controlCliente=new ControlCliente();
     }
 
+    public function getIdCliente($nickname){
+        return $this->clienteDAO->getIdClienteByNickname($nickname);
+    }
+
     public function validarDatosLogin($nickname, $password){
         try {
             if($this->clienteDAO->getClienteByNickname($nickname)){
