@@ -23,7 +23,7 @@ if(!empty($_SESSION['carrito'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sección Desplegable sin JS</title>
+    <title>Historial de compras</title>
     <link rel="stylesheet" href="../CSS/historial_compras.css">
 </head>
 <body>
