@@ -64,7 +64,7 @@ if(!empty($_SESSION['carrito'])) {
 <h2 style="text-align: center;">Productos de la tienda</h2>
 
 <!-- Botón fuera de la tabla para añadir productos -->
-<form action="../Vista/insertarProducto.php" method="post" style="text-align: center;">
+<form action="../Vista/insertarProducto.php" method="post">
     <button class="btn-add-product" type="submit" name="añadeProducto">Añadir Producto</button>
 </form>
 
@@ -88,16 +88,16 @@ if(!empty($_SESSION['carrito'])) {
             <td><?php echo $producto->getNombre(); ?></td>
             <td><?php echo "$" . $producto->getPrecio(); ?></td>
             <td>
-                <form action="detallesProducto.php" method="get" style="display:inline;">
+                <form action="detallesProducto.php" method="get" >
                     <button type="submit" name="id_detalles" value="<?php echo $producto->getId(); ?>">Detalles</button>
                 </form>
-                <form action="modificarProducto.php" method="get" style="display:inline;">
+                <form action="modificarProducto.php" method="get"  >
                     <button type="submit" name="id_modificar" value="<?php echo $producto->getId(); ?>">Modificar</button>
                 </form>
-                <form action="../Validaciones/anyadirCarrito.php" method="get" style="display:inline;">
+                <form action="../Validaciones/anyadirCarrito.php" method="get"  >
                     <button type="submit" name="id_carrito" value="<?php echo $producto->getId(); ?>">Añadir al carrito</button>
                 </form>
-                <form action="eliminarProducto.php" method="get" style="display:inline;">
+                <form action="eliminarProducto.php" method="get"  >
                     <button type="submit" name="id_eliminar" value="<?php echo $producto->getId(); ?>">Eliminar</button>
                 </form>
             </td>

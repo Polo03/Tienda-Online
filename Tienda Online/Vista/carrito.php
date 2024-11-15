@@ -89,11 +89,15 @@ if(!empty($_SESSION['carrito'])) {
     <?php endforeach; ?>
     </tbody>
 </table>
-<?php endif; ?>
+
 <form action="../Validaciones/confirmarCompra.php" method="POST">
     <div class="botones">
         <button type="submit" class="accept-btn" name="comprar" style="width: 80%">Comprar</button>
     </div>
 </form>
+<?php endif; ?>
+<footer>
+    <div class="nombres">Adrian Polo & Carlos Villegas</div>
+</footer>
 </body>
 </html>
