@@ -29,7 +29,7 @@ if(!empty($_SESSION['carrito'])) {
 <div class="barra-superior">
     <div class="contenedor-carrito">
         <a href="carrito.php" class="carrito-link">
-            <img src="https://cdn-icons-png.flaticon.com/128/2601/2601726.png" width="30px">
+            <p>🛒</p>
             <div class="carrito-cantidad">
                 <span id="carrito-cantidad"><?php echo $numeroProductos; ?></span>
             </div>
