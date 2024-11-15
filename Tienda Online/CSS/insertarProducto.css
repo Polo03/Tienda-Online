@@ -72,7 +72,7 @@ textarea {
     resize: vertical; /* Permite redimensionar el área de texto */
 }
 
-button[type="submit"] {
+.accept-btn{
     background-color: #28a745;
     color: white;
     border: none;
@@ -80,11 +80,10 @@ button[type="submit"] {
     padding: 10px;
     cursor: pointer;
     font-size: 1.1rem;
-    width: 85%;
+    width: 80%;
     margin-top: 10px;
 }
-
-button[type="submit"]:hover {
+.accept-btn:hover{
     background-color: #218838;
 }
 

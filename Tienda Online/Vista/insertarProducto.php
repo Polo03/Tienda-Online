@@ -35,12 +35,10 @@
             <label for="imagen">Imagen (URL):</label>
             <input type="text" id="imagen" name="imagen" pattern="{1,}"><br><br>
 
-            <button type="submit" name="accion" value="insertar">Insertar Producto</button>
-            <button class="close-btn" type="submit" name="accion" value="cerrar">Salir</button>
+            <button class="accept-btn" name="accion" type="submit" value="insertar">Insertar Producto</button>
+            <button class="close-btn" name="accion" value="cerrar">Salir</button>
         </form>
     </div>
 </div>
-
-
 </body>
 </html>

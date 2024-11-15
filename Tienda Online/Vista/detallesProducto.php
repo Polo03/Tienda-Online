@@ -52,7 +52,7 @@ if (isset($_GET['id_detalles'])) {
             <label for="imagen">Imagen (URL):</label>
 <!--            <input type="image" id="imagen" name="imagen" value="--><?php //$imagen;?><!--" readonly><br>-->
             <?php echo '<img src="' . htmlspecialchars($imagen) . '" alt="Imagen desde la base de datos">';?>
-            <button class="close-btn" type="submit" id="accion" name="salir">Salir</button>
+            <button class="close-btn" id="accion" name="salir">Salir</button>
         </form>
 
 

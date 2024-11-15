@@ -92,8 +92,7 @@ if(!empty($_SESSION['carrito'])) {
 <?php endif; ?>
 <form action="../Validaciones/confirmarCompra.php" method="POST">
     <div class="botones">
-        <button type="submit" class="accept-btn" name="comprar">Comprar</button>
-        <button class="close-btn" name="salir">Volver</button>
+        <button type="submit" class="accept-btn" name="comprar" style="width: 80%">Comprar</button>
     </div>
 </form>
 </body>
