@@ -105,5 +105,8 @@ if(!empty($_SESSION['carrito'])) {
     </tbody>
 </table>
 
+<footer>
+    <div class="nombres">Adrian Polo & Carlos Villegas</div>
+</footer>
 </body>
 </html>

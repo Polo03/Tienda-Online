@@ -84,9 +84,6 @@ foreach ($compras as $i=>$compra) {
 }
 
 ?>
-<div class="botones">
-    <button class="close-btn" style="width: 80%" name="salir" onclick="window.location.href='../Vista/tienda.php'">Volver a la tienda</button>
-</div>
 
 </body>
 </html>

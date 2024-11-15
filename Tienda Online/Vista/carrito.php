@@ -93,6 +93,5 @@ if(!empty($_SESSION['carrito'])) {
         <button class="close-btn" name="salir">Volver</button>
     </div>
 </form>
-
 </body>
 </html>

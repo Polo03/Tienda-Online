@@ -87,8 +87,8 @@ class ClienteDAO {
         $stmt->bindParam(':telefono', $telefono);
         $stmt->bindParam(':domicilio', $domicilio);
         return $stmt->execute();
-
     }
+
     public function updateCliente($cliente) {
         $stmt = $this->conn->prepare("UPDATE cliente SET nombre = :nombre, apellido = :apellido, nickname = :nickname, password = :password, telefono = :telefono, domicilio = :domicilio WHERE id = :id");
         $stmt->bindParam(':id', $cliente->getId());
