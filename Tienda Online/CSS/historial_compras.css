@@ -202,21 +202,6 @@ button {
     padding-left: 20%;
 }
 
-.accept-btn{
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    width: 65%;
-    margin-top: 10px;
-}
-.accept-btn:hover{
-    background-color: #218838;
-}
-
 /* Estilo del botón de cerrar */
 .close-btn {
     background-color: #dc3545;
@@ -227,7 +212,7 @@ button {
     cursor: pointer;
     font-size: 1rem;
     margin-top: 15px;
-    width: 10%;
+    width: 80%;
 }
 
 .close-btn:hover {

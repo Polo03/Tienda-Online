@@ -84,8 +84,6 @@ class CompraDAO {
             return $stmt->execute();
         }
 
-
-
     }
 }
 ?>
