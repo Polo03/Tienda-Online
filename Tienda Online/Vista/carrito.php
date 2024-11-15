@@ -48,6 +48,7 @@ if(!empty($_SESSION['carrito'])) {
         </span>
         <div class="menu">
             <ul>
+                <li><a href="tienda.php">Inicio</a></li>
                 <li><a href="historial_compras.php">Historial de compras</a></li>
                 <li><a href="cerrar_sesion.php">Cerrar Sesión</a></li>
             </ul>
@@ -57,6 +58,7 @@ if(!empty($_SESSION['carrito'])) {
 
 <h2 style="text-align: center;">Carrito</h2>
 
+<?php if(!empty($_SESSION['carrito'])): ?>
 <table>
     <thead>
     <tr>
@@ -87,6 +89,7 @@ if(!empty($_SESSION['carrito'])) {
     <?php endforeach; ?>
     </tbody>
 </table>
+<?php endif; ?>
 <form action="../Validaciones/confirmarCompra.php" method="POST">
     <div class="botones">
         <button type="submit" class="accept-btn" name="comprar">Comprar</button>

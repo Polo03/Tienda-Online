@@ -53,6 +53,7 @@ if(!empty($_SESSION['carrito'])) {
         </span>
         <div class="menu">
             <ul>
+                <li><a href="tienda.php">Inicio</a></li>
                 <li><a href="historial_compras.php">Historial de compras</a></li>
                 <li><a href="cerrar_sesion.php">Cerrar Sesión</a></li>
             </ul>
