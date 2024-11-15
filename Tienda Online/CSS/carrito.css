@@ -186,8 +186,6 @@ button {
     background-color: #c82333;
 }
 footer {
-    position: absolute; /* El footer estará posicionado de manera absoluta */
-    bottom: 0; /* Se coloca al fondo */
     display: flex;
     justify-content: center;
     align-items: center;
