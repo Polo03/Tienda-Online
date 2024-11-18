@@ -13,6 +13,9 @@ if(!empty($_SESSION['carrito'])) {
         $numeroProductos=$numeroProductos+$productos[1];
     }
 }
+if($numeroProductos==0){
+    header('location: tienda.php');
+}
 ?>
 <!doctype html>
 <html lang="en">
