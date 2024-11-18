@@ -96,8 +96,5 @@ if(!empty($_SESSION['carrito'])) {
     </div>
 </form>
 <?php endif; ?>
-<footer>
-    <div class="nombres">Adrian Polo & Carlos Villegas</div>
-</footer>
 </body>
 </html>
