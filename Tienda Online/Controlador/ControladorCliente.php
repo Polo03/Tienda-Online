@@ -19,20 +19,14 @@ class ControladorCliente {
         try {
             if($this->clienteDAO->getClienteByNickname($nickname)){
                 if($this->clienteDAO->getClienteByNicknameAndPassword($nickname, $password)){
-                    // Crear una nueva instancia de la clase Usuario
-                    $nuevoCliente = new Cliente($nickname, $password);
-
                     // Guardar el objeto Usuario en la sesión
-                    $_SESSION['cliente'] = $nuevoCliente;
-
+                    $_SESSION['cliente'] = $nickname;
                     header('location: ../Vista/tienda.php');
                 }else{
-                    $error1= "Inicio de sesion incorrecto.";
                     header("location:../Vista/login.php?error=Inicio de sesion incorrecto.");
                     exit();
                 }
             }else{
-                $error2= "Usuario no existente.";
                 header("location:../Vista/login.php?error=Usuario no existente.");
                 exit();
             }

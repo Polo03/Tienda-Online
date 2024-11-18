@@ -11,8 +11,8 @@ if (!isset($_SESSION['carrito'])) {
 }
 $numeroProductos=0;
 if(!empty($_SESSION['carrito'])) {
-    foreach($_SESSION['carrito'] as $productos){
-        $numeroProductos=$numeroProductos+$productos[1];
+    foreach ($_SESSION['carrito'] as $productos) {
+        $numeroProductos = $numeroProductos + $productos[1];
     }
 }
 ?>
@@ -45,10 +45,7 @@ if(!empty($_SESSION['carrito'])) {
     <div class="menu-container">
         <span class="palabra">
             <?php
-
-            $datosSerializados = serialize($_SESSION['cliente']);
-            $obj = unserialize($datosSerializados);
-            echo "Bienvenido, " . htmlspecialchars($obj->getUsuario());
+            echo "Bienvenido, " . htmlspecialchars($_SESSION['cliente']);
             ?>
         </span>
         <div class="menu">

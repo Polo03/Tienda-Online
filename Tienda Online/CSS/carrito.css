@@ -162,7 +162,7 @@ button {
     padding: 10px;
     cursor: pointer;
     font-size: 1.1rem;
-    width: 80%;
+    width: 37.5%;
     margin-top: 10px;
 }
 .accept-btn:hover{
@@ -171,34 +171,19 @@ button {
 
 /* Estilo del botón de cerrar */
 .close-btn {
-    background-color: #dc3545;
+    background-color: #c82333;
+    width: 37.5%;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px;
     cursor: pointer;
-    font-size: 1rem;
-    margin-top: 15px;
-    width: 10%;
+    font-size: 1.1rem;
+    margin-top: 10px;
 }
 
 .close-btn:hover {
     background-color: #c82333;
-}
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    width: 96.9%;
-    background-color: #007bff; /* Puedes ajustar el color si lo deseas */
-    color: white;
-    font-size: 15px;
-    padding: 10px 20px;
-}
-
-.nombres {
-    font-weight: bold;
 }
 
 

@@ -5,7 +5,7 @@ require_once '../Modelo/DTOCompra.php';
 require_once '../Modelo/Cliente.php';
 session_start();
 $controladorCliente = new ControladorCliente();
-$id_cliente = $controladorCliente->getIdCliente($_SESSION['cliente']->getUsuario());
+$id_cliente = $controladorCliente->getIdCliente($_SESSION['cliente']);
 
 $fecha_hora_con_dia = date('d-m-Y H:i:s');
 
@@ -18,6 +18,9 @@ if($id_cliente!=null){
         }
         $_SESSION['carrito']=[];
     }
+}
+if(isset($_POST['borrarCarrito'])){
+    $_SESSION['carrito']=[];
 }
 
 header("Location: ../Vista/tienda.php");

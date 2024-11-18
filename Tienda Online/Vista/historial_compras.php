@@ -17,6 +17,8 @@ if(!empty($_SESSION['carrito'])) {
         $numeroProductos=$numeroProductos+$productos[1];
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -42,9 +44,7 @@ if(!empty($_SESSION['carrito'])) {
     <div class="menu-container">
         <span class="palabra">
             <?php
-            $datosSerializados = serialize($_SESSION['cliente']);
-            $obj = unserialize($datosSerializados);
-            echo "Bienvenido, " . htmlspecialchars($obj->getUsuario());
+            echo "Bienvenido, " . htmlspecialchars($_SESSION['cliente']);
             ?>
         </span>
         <div class="menu">
@@ -62,9 +62,7 @@ if(!empty($_SESSION['carrito'])) {
 $controlCompras=new ControlCompras();
 $controladorCliente= new ControladorCliente();
 $productoDao=new ProductoDAO();
-$datosSerializados = serialize($_SESSION['cliente']);
-$obj = unserialize($datosSerializados);
-$id_cliente=$controladorCliente->getIdCliente($obj->getUsuario());
+$id_cliente=$controladorCliente->getIdCliente($_SESSION['cliente']);
 $compras=$controlCompras->getAllComprasByIdCliente($id_cliente);
 // Bucle for para generar las secciones dinámicamente
 foreach ($compras as $i=>$compra) {

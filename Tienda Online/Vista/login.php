@@ -15,7 +15,7 @@
     // Mostrar avisos si existen en la URL
     if (isset($_GET['error']))
         if($_GET['error']=='Usuario no existente.'){
-            echo "<p style='color: red;'>$_GET[error] . <a href='registrar.php'>¿Quiere registrarse?</a></p>";
+            echo "<p style='color: red;'>$_GET[error]<a href='registrar.php'>¿Quiere registrarse?</a></p>";
         }else
             echo "<p style='color: red;'>$_GET[error]</p>";
 

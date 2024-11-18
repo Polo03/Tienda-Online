@@ -13,9 +13,6 @@ if(!empty($_SESSION['carrito'])) {
         $numeroProductos=$numeroProductos+$productos[1];
     }
 }
-if($numeroProductos==0){
-    header('location: tienda.php');
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -44,9 +41,7 @@ if($numeroProductos==0){
     <div class="menu-container">
         <span class="palabra">
             <?php
-            $datosSerializados = serialize($_SESSION['cliente']);
-            $obj = unserialize($datosSerializados);
-            echo "Bienvenido, " . htmlspecialchars($obj->getUsuario());
+            echo "Bienvenido, " . htmlspecialchars($_SESSION['cliente']);
             ?>
         </span>
         <div class="menu">
@@ -95,7 +90,8 @@ if($numeroProductos==0){
 
 <form action="../Validaciones/confirmarCompra.php" method="POST">
     <div class="botones">
-        <button type="submit" class="accept-btn" name="comprar" style="width: 80%">Comprar</button>
+        <button type="submit" class="accept-btn" name="comprar">Comprar</button>
+        <button class="close-btn" name="borrarCarrito">Eliminar Carrito</button>
     </div>
 </form>
 <?php endif; ?>
