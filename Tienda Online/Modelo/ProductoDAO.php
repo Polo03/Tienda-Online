@@ -7,6 +7,18 @@ class ProductoDAO {
     public function __construct() {
         $this->conn = db::getConnection();
     }
+    public function getIdProductoByName($name) {
+        $stmt = $this->conn->prepare("SELECT id FROM producto WHERE nombre = :nombre");
+        $stmt->bindParam(':nombre', $name);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($fila) {
+            return $fila["id"];
+        } else {
+            return null; // Si no se encuentra, devolvemos null
+        }
+    }
     public function getProductoById($id) {
         $stmt = $this->conn->prepare("SELECT * FROM producto WHERE id = :id");
         $stmt->bindParam(':id', $id);

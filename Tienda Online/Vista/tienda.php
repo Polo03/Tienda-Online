@@ -3,6 +3,7 @@
 session_start();
 
 require_once '../Controlador/ControladorCliente.php';
+require_once '../Controlador/ControlProducto.php';
 require_once '../Modelo/DTOProducto.php';
 // Aseguramos que $_SESSION['carrito'] esté inicializado, incluso si no hay productos en el carrito
 if (!isset($_SESSION['carrito'])) {
@@ -65,43 +66,57 @@ if(!empty($_SESSION['carrito'])) {
     <button class="btn-add-product" type="submit" name="añadeProducto">Añadir Producto</button>
 </form>
 
-<table>
-    <thead>
-    <tr>
-        <th></th>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Acciones</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    require_once '../Controlador/ControlProducto.php';
-    $controlador=new ControlProducto();
-    $productos=$controlador->getAllProductos();
-    foreach ($productos as $producto):?>
-        <tr>
-            <td><?php echo "<img src=".$producto->getImagen().">"?></td>
-            <td><?php echo $producto->getNombre(); ?></td>
-            <td><?php echo "$" . $producto->getPrecio(); ?></td>
-            <td>
-                <form action="detallesProducto.php" method="get" >
-                    <button type="submit" name="id_detalles" value="<?php echo $producto->getId(); ?>">Detalles</button>
-                </form>
-                <form action="modificarProducto.php" method="get"  >
-                    <button type="submit" name="id_modificar" value="<?php echo $producto->getId(); ?>">Modificar</button>
-                </form>
-                <form action="../Validaciones/anyadirCarrito.php" method="get"  >
-                    <button type="submit" name="id_carrito" value="<?php echo $producto->getId(); ?>">Añadir al carrito</button>
-                </form>
-                <form action="eliminarProducto.php" method="get"  >
-                    <button type="submit" name="id_eliminar" value="<?php echo $producto->getId(); ?>">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
+<?php
+
+// Generar la tabla HTML
+echo '<div class="table-container">';
+echo '<table>';
+echo '<tbody>';
+
+$productCount = 0; // Contador para crear nuevas filas cada 5 productos
+$controlador = new ControlProducto();
+$productos = $controlador->getAllProductos();
+// Recorrer el array de productos
+foreach ($productos as $producto) {
+if ($productCount % 5 == 0) {
+// Cada 5 productos, creamos una nueva fila
+if ($productCount > 0) {
+echo '</tr>';  // Cerrar la fila anterior
+}
+echo '<tr>';  // Iniciar una nueva fila
+}
+
+// Imprimir cada celda de la tabla con los datos del producto
+echo '<td>';
+echo '<div class="product-container">';
+echo '<div class="product-name">' . htmlspecialchars($producto->getNombre()) . '</div>';
+echo '<div class="product-price">' . number_format($producto->getPrecio(), 2) . '€</div>';
+echo '<img src="' . $producto->getImagen() . '" alt="' . htmlspecialchars($producto->getNombre()) . '">';
+echo '<form action="../Validaciones/validarBotonesTienda.php" method="GET">';
+echo '<div class="buttons-container">';
+
+echo '<button  class="button" type="submit" name="id_detalles" value='.$producto->getId().'>👁️<span class="tooltip">Detalles del producto</span></button>';
+echo '<button class="button" type="submit" name="id_modificar" value='.$producto->getId().'>🔧️<span class="tooltip">Modificar producto</span></button>';
+echo '<button class="button" type="submit" name="id_carrito" value='.$producto->getId().'>➕<span class="tooltip">Añadir al carrito</span></button>';
+echo '<button class="button" type="submit" name="id_eliminar" value='.$producto->getId().'>➖<span class="tooltip">Eliminar Producto</span></button>';
+echo '</div>';
+echo '</form>';
+echo '</div>';
+echo '</td>';
+
+$productCount++;
+}
+
+// Cerrar la última fila si es necesario
+if ($productCount % 5 != 0) {
+echo '</tr>';
+}
+
+echo '</tbody>';
+echo '</table>';
+echo '</div>';
+
+?>
 
 <footer>
     <div class="nombres">Adrian Polo & Carlos Villegas</div>

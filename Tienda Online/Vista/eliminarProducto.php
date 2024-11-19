@@ -3,8 +3,8 @@
 require_once '../Controlador/ControlProducto.php';
 $controlador= new ControlProducto();
 //Obtener el ID del producto desde la URL (por ejemplo: modificar_producto.php?id=1)
-if (isset($_GET['id_eliminar'])) {
-    $id_producto = $_GET['id_eliminar'];
+if (isset($_GET['id'])) {
+    $id_producto = $_GET['id'];
     $result=$controlador->getProducto($id_producto);
     // Guardar los datos en variables
     $producto = $result;
@@ -31,28 +31,24 @@ if (isset($_GET['id_eliminar'])) {
         <h1>Eliminar Producto</h1>
         <!-- Formulario -->
         <form action="../Validaciones/validarEliminar.php" method="POST">
-            <!-- Campo ID (solo lectura) -->
+
             <label for="id">ID:</label>
             <input type="text" id="id" name="id" value="<?php echo $id; ?>" readonly><br>
 
-            <!-- Campo Nombre -->
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>" readonly><br>
 
-            <!-- Campo Precio -->
             <label for="precio">Precio:</label>
             <input type="text" id="precio" name="precio" value="<?php echo $precio; ?>" readonly><br>
 
-            <!-- Campo Descripción -->
             <label for="descripcion">Descripción:</label>
             <textarea id="descripcion" name="descripcion" rows="4" readonly><?php echo $descripcion; ?></textarea><br>
 
-            <!-- Campo Precio -->
-            <label for="imagen">Imagen (URL):</label>
-            <input type="text" id="imagen" name="imagen" value="<?php echo $imagen;?>" readonly><br>
+            <label for="imagen">Imagen:</label>
+            <?php echo '<img src="' . htmlspecialchars($imagen) . '" alt="Imagen desde la base de datos">';?>
 
             <button type="submit">Eliminar</button>
-            <button class="close-btn" onclick="window.location.href='tienda.php">Salir</button>
+            <button class="close-btn" name="salir">Salir</button>
         </form>
 
 

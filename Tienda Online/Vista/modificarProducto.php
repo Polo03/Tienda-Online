@@ -12,8 +12,6 @@ if (isset($_GET['id_modificar'])) {
     $nombre = $producto->getNombre();
     $descripcion = $producto->getDescripcion();
     $precio = $producto->getPrecio();
-    $imagen = $producto->getImagen();
-
 }
 ?>
 <!DOCTYPE html>
@@ -43,11 +41,10 @@ if (isset($_GET['id_modificar'])) {
             $nombre = $producto->getNombre();
             $descripcion = $producto->getDescripcion();
             $precio = $producto->getPrecio();
-            $imagen = $producto->getImagen();
         }
         ?>
         <!-- Formulario -->
-        <form action="../Validaciones/validarUpdate.php" method="POST">
+        <form action="../Validaciones/validarUpdate.php" method="POST" enctype="multipart/form-data">
             <!-- Campo ID (solo lectura) -->
             <label for="id">ID:</label>
             <input type="text" id="id" name="id" value="<?php echo $id; ?>" readonly><br>
@@ -64,12 +61,12 @@ if (isset($_GET['id_modificar'])) {
             <label for="descripcion">Descripción:</label>
             <textarea id="descripcion" name="descripcion" rows="4" required><?php echo $descripcion; ?></textarea><br>
 
-            <!-- Campo Precio -->
-            <label for="imagen">Imagen (URL):</label>
-            <input type="text" id="imagen" name="imagen" value="<?php echo $imagen;?>" required><br>
+            <!-- Campo Imagen -->
+            <label for="ficheroSubida">Imagen:</label>
+            <input type="file" name="ficheroSubida" id="ficheroSubida"><br><br>
 
             <button type="submit">Modificar</button>
-            <button class="close-btn" onclick="window.location.href='tienda.php">Salir</button>
+            <button class="close-btn" name="salir">Salir</button>
         </form>
 
 

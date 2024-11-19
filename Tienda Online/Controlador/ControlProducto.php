@@ -1,8 +1,10 @@
 <?php
 require_once '../Modelo/ProductoDAO.php';
+require_once '../Controlador/ControlSubida.php';
 class ControlProducto{
     public function __construct() {
         $this->productoDAO = new ProductoDAO();
+        $this->controlSubida=new ControlSubida();
     }
     public function getProducto($id) {
         return $this->productoDAO->getProductoById($id);
@@ -21,9 +23,10 @@ class ControlProducto{
             return false;
         }
         else {
+            $ruta=$this->controlSubida->proceso();
             $producto->setId($this->productoDAO->getLastId()+1);
+            $producto->setImagen($ruta);
             $this->productoDAO->addProducto($producto);
-            echo "<p>Nuevo producto creado exitosamente</p>";
             header("location: ../Vista/tienda.php");
             return true;
         }
@@ -33,7 +36,7 @@ class ControlProducto{
             // Datos de ejemplo
             $error = 'Producto con nombre existente';
             $id = $producto->getId();
-
+            print_r($producto);
             header("Location: ../Vista/modificarProducto.php?error=$error&id=$id");
             return false;
         }
@@ -45,6 +48,12 @@ class ControlProducto{
             return false;
         }
         else {
+            $id = $this->productoDAO->getIdProductoByName($producto->getNombre());
+            $rutaAnterior = $this->productoDAO->getProductoById($id)->getImagen();
+            unlink('C:/xampp/htdocs/Ejercicios/PHPStorm/Tienda Online/Tienda Online/'.substr($rutaAnterior,3));
+            $ruta=$this->controlSubida->procesoActualizar($producto);
+            $producto->setImagen($ruta);
+            print_r($producto);
             $this->productoDAO->updateProducto($producto);
             header("location: ../Vista/tienda.php");
             return true;
@@ -53,6 +62,11 @@ class ControlProducto{
     public function eliminarProducto($producto) {
         $this->productoDAO->deleteProducto($producto);
         header("location: ../Vista/tienda.php");
+    }
+
+    public function getControlSubida(): ControlSubida
+    {
+        return $this->controlSubida;
     }
 
 }

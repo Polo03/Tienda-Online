@@ -6,8 +6,8 @@ $control = new ControlProducto();
 
 $existe=false;
 $keyAnyadir=0;
-$nombreProducto=$control->getProducto($_GET["id_carrito"])->getNombre();
-$productoArray=[$_GET["id_carrito"],1];
+$nombreProducto=$control->getProducto($_GET["id"])->getNombre();
+$productoArray=[$_GET["id"],1];
 foreach($_SESSION['carrito'] as $key => $productos){
     $nombreProductoBD=$control->getProducto($productos[0])->getNombre();
     if($productos[1]==0){

@@ -1,6 +1,5 @@
 <?php
 require_once '../Modelo/ClienteDAO.php';
-require_once '../Modelo/Cliente.php';
 require_once '../Controlador/ControlCliente.php';
 class ControladorCliente {
     private $clienteDAO;

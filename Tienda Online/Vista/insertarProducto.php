@@ -18,7 +18,7 @@
             echo "<p style='color: red;'>$_GET[error]</p>";
         ?>
         <!-- Formulario -->
-        <form action="../Validaciones/validarInsertar.php" method="POST">
+        <form action="../Validaciones/validarInsertar.php" method="POST" enctype="multipart/form-data">
             <!-- Campo Nombre -->
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" pattern="{1,}"><br><br>
@@ -31,9 +31,9 @@
             <label for="descripcion">Descripción:</label>
             <textarea id="descripcion" name="descripcion" rows="4"></textarea><br>
 
-            <!-- Campo Precio -->
-            <label for="imagen">Imagen (URL):</label>
-            <input type="text" id="imagen" name="imagen" pattern="{1,}"><br><br>
+            <!-- Campo Imagen -->
+            <label for="ficheroSubida">Imagen:</label>
+            <input type="file" name="ficheroSubida" id="ficheroSubida"><br><br>
 
             <button class="accept-btn" name="accion" type="submit" value="insertar">Insertar Producto</button>
             <button class="close-btn" name="accion" value="cerrar">Salir</button>
