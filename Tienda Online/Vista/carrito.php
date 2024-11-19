@@ -2,7 +2,7 @@
 
 session_start();
 require_once '../Controlador/ControlProducto.php';
-require_once '../Modelo/Cliente.php';
+require_once '../Controlador/ControladorCliente.php';
 // Aseguramos que $_SESSION['carrito'] esté inicializado, incluso si no hay productos en el carrito
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = [];
@@ -41,7 +41,8 @@ if(!empty($_SESSION['carrito'])) {
     <div class="menu-container">
         <span class="palabra">
             <?php
-            echo "Bienvenido, " . htmlspecialchars($_SESSION['cliente']);
+            $controlador=new ControladorCliente();
+            echo "Bienvenido, " . $controlador->getNombreClienteByNickname($_SESSION['cliente']);
             ?>
         </span>
         <div class="menu">
@@ -94,6 +95,15 @@ if(!empty($_SESSION['carrito'])) {
         <button class="close-btn" name="borrarCarrito">Eliminar Carrito</button>
     </div>
 </form>
-<?php endif; ?>
+<?php endif;
+if(empty($_SESSION['carrito'])):
+?>
+<div class="mensaje">
+    ¡Su carrito está vacío!
+</div>
+<?php
+endif;
+
+?>
 </body>
 </html>

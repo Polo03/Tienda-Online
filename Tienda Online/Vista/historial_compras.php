@@ -44,7 +44,8 @@ if(!empty($_SESSION['carrito'])) {
     <div class="menu-container">
         <span class="palabra">
             <?php
-            echo "Bienvenido, " . htmlspecialchars($_SESSION['cliente']);
+            $controlador=new ControladorCliente();
+            echo "Bienvenido, " . $controlador->getNombreClienteByNickname($_SESSION['cliente']);
             ?>
         </span>
         <div class="menu">
@@ -64,25 +65,28 @@ $controladorCliente= new ControladorCliente();
 $productoDao=new ProductoDAO();
 $id_cliente=$controladorCliente->getIdCliente($_SESSION['cliente']);
 $compras=$controlCompras->getAllComprasByIdCliente($id_cliente);
+if(count($compras)>0) {
 // Bucle for para generar las secciones dinámicamente
-foreach ($compras as $i=>$compra) {
-    $nombreProducto=$productoDao->getProductoById($compra->getProductoId())->getNombre();
-    $fecha=explode(" ", $compra->getFechaCompra());
-    // Generamos un ID único para cada checkbox
-    $checkbox_id = "toggle" . $i;
-    $label_for = "toggle" . $i;
-    echo "
+    foreach ($compras as $i => $compra) {
+        $nombreProducto = $productoDao->getProductoById($compra->getProductoId())->getNombre();
+        $fecha = explode(" ", $compra->getFechaCompra());
+        // Generamos un ID único para cada checkbox
+        $checkbox_id = "toggle" . $i;
+        $label_for = "toggle" . $i;
+        echo "
     <section>
         <input type='checkbox' id='$checkbox_id'>
-        <label for='$label_for'>Compra realizada a las ".$fecha[1]." el día ".$fecha[0]."</label>
+        <label for='$label_for'>Compra realizada a las " . $fecha[1] . " el día " . $fecha[0] . "</label>
         <div class='content'>
-            <p> Ha comprado ".$compra->getCantidad()." unidades del producto ".$nombreProducto." </p>
+            <p> Ha comprado " . $compra->getCantidad() . " unidades del producto " . $nombreProducto . " </p>
         </div>
     </section>
     ";
+    }
 }
-
-?>
+if(count($compras)==0): ?>
+    <div class='mensaje'>¡Usted no ha realizado ninguna compra!</div>
+<?php endif; ?>
 
 </body>
 </html>

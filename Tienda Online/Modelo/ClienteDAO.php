@@ -31,6 +31,17 @@ class ClienteDAO {
             return null; // Si no se encuentra, devolvemos null
         }
     }
+    public function getNombreClienteByNickname($nickname) {
+        $stmt = $this->conn->prepare("SELECT nombre FROM cliente WHERE nickname = :nickname");
+        $stmt->bindParam(':nickname', $nickname);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($fila) {
+            return $fila['nombre'];
+        } else {
+            return null; // Si no se encuentra, devolvemos null
+        }
+    }
     public function getClienteByNickname($nickname) {
         $stmt = $this->conn->prepare("SELECT * FROM cliente WHERE nickname = :nickname");
         $stmt->bindParam(':nickname', $nickname);
