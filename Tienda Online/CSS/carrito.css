@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+
 }
 /* Estilos generales */
 .barra-superior {
@@ -187,7 +188,17 @@ button {
 }
 
 .mensaje {
+    font-size: 2em;
+    margin-left: 20%;
+}
+
+.mensaje2 {
     font-size: 3em;
     text-align: center;
 }
 
+hr{
+    width: 60%;
+    border: 0;
+    border-top: 5px solid #000; /* Aumenta el grosor aquí */
+}

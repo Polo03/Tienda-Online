@@ -88,6 +88,16 @@ if(!empty($_SESSION['carrito'])) {
     <?php endforeach; ?>
     </tbody>
 </table>
+<hr>
+    <?php
+    $totalPrecioCompra=0;
+    foreach ($_SESSION['carrito'] as $productos){
+        $producto=$control->getProducto($productos[0]);
+        $totalPrecioCompra+=$producto->getPrecio()*$productos[1];
+    }
+    echo "<h1 class='mensaje'>PRECIO TOTAL DE LA COMPRA: $totalPrecioCompra €</h1>";
+
+    ?>
 
 <form action="../Validaciones/confirmarCompra.php" method="POST">
     <div class="botones">
@@ -98,7 +108,7 @@ if(!empty($_SESSION['carrito'])) {
 <?php endif;
 if(empty($_SESSION['carrito'])):
 ?>
-<div class="mensaje">
+<div class="mensaje2">
     ¡Su carrito está vacío!
 </div>
 <?php

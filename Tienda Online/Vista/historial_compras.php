@@ -2,7 +2,6 @@
 
 session_start();
 require_once '../Controlador/ControlCompras.php';
-require_once '../Modelo/Cliente.php';
 require_once '../Modelo/DTOCompra.php';
 require_once '../Controlador/ControladorCliente.php';
 require_once '../Modelo/ProductoDAO.php';
@@ -67,7 +66,7 @@ $id_cliente=$controladorCliente->getIdCliente($_SESSION['cliente']);
 $compras=$controlCompras->getAllComprasByIdCliente($id_cliente);
 if(count($compras)>0) {
 // Bucle for para generar las secciones dinámicamente
-    foreach ($compras as $i => $compra) {
+    /*foreach ($compras as $i => $compra) {
         $nombreProducto = $productoDao->getProductoById($compra->getProductoId())->getNombre();
         $fecha = explode(" ", $compra->getFechaCompra());
         // Generamos un ID único para cada checkbox
@@ -80,6 +79,30 @@ if(count($compras)>0) {
         <div class='content'>
             <p> Ha comprado " . $compra->getCantidad() . " unidades del producto " . $nombreProducto . " </p>
         </div>
+    </section>
+    ";
+    }*/
+    $id_productos=[];
+    $cantidades=[];
+    foreach ($compras as $i => $compra) {
+        $id_productos=explode(" ",$compra->getProductos());
+        $cantidades=explode(" ",$compra->getCantidades());
+        $fecha = explode(" ", $compra->getFechaCompra());
+        // Generamos un ID único para cada checkbox
+        $checkbox_id = "toggle" . $i;
+        $label_for = "toggle" . $i;
+        echo "
+    <section>
+        <input type='checkbox' id='$checkbox_id'>
+        <label for='$label_for'>Compra realizada a las " . $fecha[1] . " el día " . $fecha[0] . "</label>
+        <div class='content'>";
+        foreach ($id_productos as $j => $id_producto) {
+            $nombreProducto = $productoDao->getProductoById($id_producto)->getNombre();
+
+            echo "<p> Ha comprado " . $cantidades[$j] . " unidades del producto " . $nombreProducto . ". </p>";
+        }
+
+        echo "</div>
     </section>
     ";
     }

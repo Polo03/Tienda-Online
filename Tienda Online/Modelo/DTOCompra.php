@@ -3,17 +3,19 @@ class DTOCompra
 {
     private $id;
     private $cliente_id;
-    private $producto_id;
+    private $productos;
     private $fecha_compra;
-    private $cantidad;
+    private $cantidades;
+    private $precio_compra;
 
-    public function __construct($id, $cliente_id, $producto_id, $fecha_compra, $cantidad)
+    public function __construct($id, $cliente_id, $productos, $fecha_compra, $cantidades, $precio_compra)
     {
         $this->id = $id;
         $this->cliente_id = $cliente_id;
-        $this->producto_id = $producto_id;
+        $this->productos = $productos;
         $this->fecha_compra = $fecha_compra;
-        $this->cantidad = $cantidad;
+        $this->cantidades = $cantidades;
+        $this->precio_compra = $precio_compra;
     }
 
     public function getId()
@@ -39,15 +41,15 @@ class DTOCompra
         $this->cliente_id = $cliente_id;
     }
 
-    public function getProductoId()
+    public function getProductoS()
     {
-        return $this->producto_id;
+        return $this->productos;
     }
 
 
-    public function setProductoId($producto_id)
+    public function setProductos($productos)
     {
-        $this->producto_id = $producto_id;
+        $this->productos = $productos;
     }
 
 
@@ -62,14 +64,24 @@ class DTOCompra
     }
 
 
-    public function getCantidad()
+    public function getCantidades()
     {
-        return $this->cantidad;
+        return $this->cantidades;
     }
 
-    public function setCantidad($cantidad)
+    public function setCantidades($cantidades)
     {
-        $this->cantidad = $cantidad;
+        $this->cantidades = $cantidades;
+    }
+
+    public function getPrecioCompra()
+    {
+        return $this->precio_compra;
+    }
+
+    public function setPrecioCompra($precio_compra)
+    {
+        $this->precio_compra = $precio_compra;
     }
 
 

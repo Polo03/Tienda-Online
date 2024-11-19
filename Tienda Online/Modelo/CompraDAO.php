@@ -15,7 +15,7 @@ class CompraDAO {
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($fila) {
-            return new DTOCompra($fila['id'], $fila['cliente_id'], $fila['producto_id'], $fila['fecha_compra'], $fila['cantidad']);
+            return new DTOCompra($fila['id'], $fila['cliente_id'], $fila['productos'], $fila['fecha_compra'], $fila['cantidades'], $fila['precio_compra']);
         } else {
             return null; // Si no se encuentra, devolvemos null
         }
@@ -29,7 +29,7 @@ class CompraDAO {
 
         $compras = [];
         foreach ($resultados as $fila) {
-            $compra = new DTOCompra($fila['id'], $fila['cliente_id'], $fila['producto_id'], $fila['fecha_compra'], $fila['cantidad']);
+            $compra = new DTOCompra($fila['id'], $fila['cliente_id'], $fila['productos'], $fila['fecha_compra'], $fila['cantidades'], $fila['precio_compra']);
             $compras[] = $compra;
         }
 
@@ -43,7 +43,7 @@ class CompraDAO {
 
         $compras = [];
         foreach ($resultados as $fila) {
-            $compra = new DTOCompra($fila['id'], $fila['cliente_id'], $fila['producto_id'], $fila['fecha_compra'], $fila['cantidad']);
+            $compra = new DTOCompra($fila['id'], $fila['cliente_id'], $fila['productos'], $fila['fecha_compra'], $fila['cantidades'], $fila['precio_compra']);
             $compras[] = $compra;
         }
 
@@ -64,23 +64,20 @@ class CompraDAO {
         $stmtCliente = $this->conn->prepare($queryCliente);
         $stmtCliente->execute([':cliente_id' => $compra->getClienteId()]);
 
-        // Verificar si el producto_id existe en la tabla producto
-        $queryProducto = "SELECT id FROM producto WHERE id = :producto_id";
-        $stmtProducto = $this->conn->prepare($queryProducto);
-        $stmtProducto->execute([':producto_id' => $compra->getProductoId()]);
 
-        if ($stmtCliente->rowCount() > 0 && $stmtProducto->rowCount() > 0) {
-            $stmt = $this->conn->prepare("INSERT INTO compra (cliente_id, producto_id, fecha_compra, cantidad) VALUES (:cliente_id, :producto_id, :fecha_compra, :cantidad)");
+        if ($stmtCliente->rowCount() > 0) {
+            $stmt = $this->conn->prepare("INSERT INTO compra (cliente_id, productos, fecha_compra, cantidades, precio_compra) VALUES (:cliente_id, :productos, :fecha_compra, :cantidades, :precio_compra)");
             //$stmt->bindParam(':id', $cliente->getId());
             $cliente_id = $compra->getClienteId();
-            $producto_id = $compra->getProductoId();
+            $productos = $compra->getProductos();
             $fecha_compra = $compra->getFechaCompra();
-            $cantidad = $compra->getCantidad();
-            echo $fecha_compra;
+            $cantidades = $compra->getCantidades();
+            $precio_compra = $compra->getPrecioCompra();
             $stmt->bindParam(':cliente_id', $cliente_id);
-            $stmt->bindParam(':producto_id', $producto_id);
+            $stmt->bindParam(':productos', $productos);
             $stmt->bindParam(':fecha_compra', $fecha_compra);
-            $stmt->bindParam(':cantidad', $cantidad);
+            $stmt->bindParam(':cantidades', $cantidades);
+            $stmt->bindParam(':precio_compra', $precio_compra);
             return $stmt->execute();
         }
 
