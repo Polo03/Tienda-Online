@@ -25,10 +25,18 @@ class ControlProducto{
         else {
             $ruta=$this->controlSubida->proceso();
             $producto->setId($this->productoDAO->getLastId()+1);
-            $producto->setImagen($ruta);
-            $this->productoDAO->addProducto($producto);
-            header("location: ../Vista/tienda.php");
-            return true;
+            if($ruta!=-1){
+                $producto->setImagen($ruta);
+                $this->productoDAO->addProducto($producto);
+                header("location: ../Vista/tienda.php");
+                return true;
+            }else{
+                // Datos de ejemplo
+                $error = 'La imagen ya esta siendo utilizada por otro producto';
+                $id = $producto->getId();
+                header("Location: ../Vista/insertarProducto.php?error=$error");
+                return false;
+            }
         }
     }
     public function modificarProducto($producto) {
@@ -52,10 +60,19 @@ class ControlProducto{
             $rutaAnterior = $this->productoDAO->getProductoById($id)->getImagen();
             unlink('C:/xampp/htdocs/Ejercicios/PHPStorm/Tienda Online/Tienda Online/'.substr($rutaAnterior,3));
             $ruta=$this->controlSubida->procesoActualizar($producto);
-            $producto->setImagen($ruta);
-            $this->productoDAO->updateProducto($producto);
-            header("location: ../Vista/tienda.php");
-            return true;
+            if($ruta!=-1){
+                $producto->setImagen($ruta);
+                $this->productoDAO->updateProducto($producto);
+                header("location: ../Vista/tienda.php");
+                return true;
+            }else{
+                // Datos de ejemplo
+                $error = 'La imagen ya esta siendo utilizada por otro producto';
+                $id = $producto->getId();
+                header("Location: ../Vista/modificarProducto.php?error=$error&id=$id");
+                return false;
+            }
+
         }
     }
     public function eliminarProducto($producto) {
