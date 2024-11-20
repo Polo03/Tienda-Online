@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
     <div class="popup-content">
         <h1>Eliminar Producto</h1>
         <!-- Formulario -->
-        <form action="../Validaciones/validarEliminar.php" method="POST">
+        <form action="../Validaciones/validarEliminar.php" method="POST" enctype="multipart/form-data">
 
             <label for="id">ID:</label>
             <input type="text" id="id" name="id" value="<?php echo $id; ?>" readonly><br>
@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
             <textarea id="descripcion" name="descripcion" rows="4" readonly><?php echo $descripcion; ?></textarea><br>
 
             <label for="imagen">Imagen:</label>
-            <?php echo '<img src="' . htmlspecialchars($imagen) . '" alt="Imagen desde la base de datos">';?>
+            <?php echo "<img id=imagen name=imagen value ".htmlspecialchars($imagen)." src=". htmlspecialchars($imagen) ." alt=Imagen desde la base de datos>";?>
 
             <button type="submit">Eliminar</button>
             <button class="close-btn" name="salir">Salir</button>

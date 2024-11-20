@@ -58,7 +58,7 @@ class ControlProducto{
         else {
             $id = $this->productoDAO->getIdProductoByName($producto->getNombre());
             $rutaAnterior = $this->productoDAO->getProductoById($id)->getImagen();
-            unlink('C:/xampp/htdocs/Ejercicios/PHPStorm/Tienda Online/Tienda Online/'.substr($rutaAnterior,3));
+            unlink($rutaAnterior);
             $ruta=$this->controlSubida->procesoActualizar($producto);
             if($ruta!=-1){
                 $producto->setImagen($ruta);
@@ -73,12 +73,13 @@ class ControlProducto{
                 return false;
             }
 
+
         }
     }
     public function eliminarProducto($producto) {
         $id = $this->productoDAO->getIdProductoByName($producto->getNombre());
         $rutaAnterior = $this->productoDAO->getProductoById($id)->getImagen();
-        unlink('C:/xampp/htdocs/Ejercicios/PHPStorm/Tienda Online/Tienda Online/'.substr($rutaAnterior,3));
+//        unlink('C:/xampp/htdocs/Ejercicios/PhpStorm/Tienda_Online/Tienda Online'.substr($rutaAnterior,3));
         $this->productoDAO->deleteProducto($producto);
         header("location: ../Vista/tienda.php");
     }
